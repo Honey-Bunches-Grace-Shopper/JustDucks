@@ -1,5 +1,6 @@
 const {db} = require('./server/db')
-const Product = require('./server/db/models/product')
+const { User } = require('./server/db/models')
+const { Product }= require('./server/db/models')
 
 const products = [
   {
@@ -442,6 +443,291 @@ const products = [
 
 ]
 
+const users = [
+  {
+    firstName: 'Shanae',
+    lastName: 'Glenn',
+    email: 'regardAppendix@gmail.com',
+    password: 'quackQuack666',
+    paymentInfo: '1864474804948568',
+    admin: 'true'
+  },{
+    firstName: 'Rosa',
+    lastName: 'Ochoa',
+    email: 'constituency@gmail.com',
+    password: 'waddleWaddle123',
+    paymentInfo: '3848032279599710',
+    admin: ''
+  },{
+    firstName: 'Rylan',
+    lastName: 'Mccaffrey',
+    email: 'jacketJaw@gmail.com',
+    password: 'quackQuack666',
+    paymentInfo: '8563810764354135',
+    admin: ''
+  },{
+    firstName: 'Kaif',
+    lastName: 'Hudson',
+    email: 'yearnSale@aol.com',
+    password: 'waddleWaddle123',
+    paymentInfo: '4838608533018024',
+    admin: 'true'
+  },{
+    firstName: 'Mirza',
+    lastName: 'Samuels',
+    email: 'excuseMe@gmail.com',
+    password: 'quackQuack666',
+    paymentInfo: '3556811153480220',
+    admin: ''
+  },{
+    firstName: 'Rogan',
+    lastName: 'Estes',
+    email: 'assertiveQuack@gmail.com',
+    password: 'waddleWaddle123',
+    paymentInfo: '7540041742546773',
+    admin: ''
+  },{
+    firstName: 'Layla',
+    lastName: 'Kim',
+    email: '@aol.com',
+    password: 'qu8ckQu8ck',
+    paymentInfo: '3101019293931610',
+    admin: ''
+  },{
+    firstName: 'Milo',
+    lastName: 'Hardy',
+    email: 'stageLeft@gmail.com',
+    password: 'qu8ckQu8ck',
+    paymentInfo: '3344150670022390',
+    admin: ''
+  },{
+    firstName: 'Nadine',
+    lastName: 'Ventura',
+    email: 'systematicPrize@msn.com',
+    password: 'quackQuack666',
+    paymentInfo: '3638454051070075',
+    admin: ''
+  },{
+    firstName: 'Kacie',
+    lastName: 'Spears',
+    email: 'fragrantTruth@gmail.com',
+    password: 'waddleWaddle123',
+    paymentInfo: '9961850469297616',
+    admin: 'true'
+  },{
+    firstName: 'Aamna',
+    lastName: 'Walters',
+    email: 'videoKing@aol.com',
+    password: 'waddleWaddle123',
+    paymentInfo: '2776134203133278',
+    admin: ''
+  },{
+    firstName: 'Mysha',
+    lastName: 'Oconnell',
+    email: 'woodFigure@msn.com',
+    password: 'qu8ckQu8ck',
+    paymentInfo: '',
+    admin: ''
+  },{
+    firstName: 'Sonia',
+    lastName: 'Bowers',
+    email: 'accentFog@yahoo.com',
+    password: 'waddleWaddle123',
+    paymentInfo: '5052957621718474',
+    admin: ''
+  },{
+    firstName: 'Teddie',
+    lastName: 'Humphries',
+    email: 'incredibleGiant@msn.com',
+    password: 'quackQuack666',
+    paymentInfo: '7817465740925989',
+    admin: ''
+  },{
+    firstName: 'Roza',
+    lastName: 'Holland',
+    email: 'unanimousBrain@gmail.com',
+    password: 'qu8ckQu8ck',
+    paymentInfo: '5411371803068159',
+    admin: 'true'
+  },{
+    firstName: 'Zeynep',
+    lastName: 'Beck',
+    email: 'noBreadForDucks@aol.com',
+    password: 'waddleWaddle123',
+    paymentInfo: '6675583421304073',
+    admin: ''
+  },{
+    firstName: 'Emma',
+    lastName: 'Arias',
+    email: 'breadIsBad@gmail.com',
+    password: 'qu8ckQu8ck',
+    paymentInfo: '9682273136391399',
+    admin: ''
+  },{
+    firstName: 'Griff',
+    lastName: 'Rosario',
+    email: 'compromise@aol.com',
+    password: 'waddleWaddle123',
+    paymentInfo: '4464575022368275',
+    admin: ''
+  },{
+    firstName: 'Martha',
+    lastName: 'Frye',
+    email: 'dismissBread@msn.com',
+    password: 'quackQuack666',
+    paymentInfo: '7655740288690398',
+    admin: ''
+  },{
+    firstName: 'Mikolaj',
+    lastName: 'Hope',
+    email: 'voyageOfDignity@gmail.com',
+    password: 'qu8ckQu8ck',
+    paymentInfo: '2776134203133278',
+    admin: 'true'
+  },{
+    firstName: 'Daniela',
+    lastName: 'Sexton',
+    email: 'privateAge@msn.com',
+    password: 'waddleWaddle123',
+    paymentInfo: '9961850469297616',
+    admin: ''
+  },{
+    firstName: 'Nevaeh',
+    lastName: 'Hollis',
+    email: 'noCompromise@gmail.com',
+    password: 'qu8ckQu8ck',
+    paymentInfo: '3556811153480220',
+    admin: ''
+  },{
+    firstName: 'Tj',
+    lastName: 'Arnold',
+    email: 'registerPace@aol.com',
+    password: 'quackQuack666',
+    paymentInfo: '3638454051070075',
+    admin: ''
+  },{
+    firstName: 'Kairon',
+    lastName: 'Cantu',
+    email: 'snowInfection@yahoo.com',
+    password: 'qu8ckQu8ck',
+    paymentInfo: '6539953862480513',
+    admin: ''
+  },{
+    firstName: 'Brennan',
+    lastName: 'Wilkinson',
+    email: 'dollSkin@msn.com',
+    password: 'waddleWaddle123',
+    paymentInfo: '5360761115550134',
+    admin: 'true'
+  },{
+    firstName: 'Dev',
+    lastName: 'Rowland',
+    email: 'spiderJelly@aol.com',
+    password: 'qu8ckQu8ck',
+    paymentInfo: '4464575022368275',
+    admin: ''
+  },{
+    firstName: 'Jennifer',
+    lastName: 'Duffy',
+    email: 'dormCousin@msn.com',
+    password: 'qu8ckQu8ck',
+    paymentInfo: '7540041742546773',
+    admin: ''
+  },{
+    firstName: 'Kylan',
+    lastName: 'Guerra',
+    email: 'lieDeny@hotmail.com',
+    password: 'quackQuack666',
+    paymentInfo: '9065952933039751',
+    admin: ''
+  },{
+    firstName: 'Gaia',
+    lastName: 'Gonzales',
+    email: 'personalCrop@msn.com',
+    password: 'waddleWaddle123',
+    paymentInfo: '3344150670022390',
+    admin: 'true'
+  },{
+    firstName: 'Sharna',
+    lastName: 'Pearce',
+    email: 'misplaceBat@gmail.com',
+    password: 'qu8ckQu8ck',
+    paymentInfo: '3101019293931610',
+    admin: ''
+  },{
+    firstName: 'Jayce',
+    lastName: 'Mercer',
+    email: 'distance@aol.com',
+    password: 'qu8ckQu8ck',
+    paymentInfo: '4984085040179561',
+    admin: ''
+  },{
+    firstName: 'Romario',
+    lastName: 'Dudley',
+    email: 'difficultyPump@gmail.com',
+    password: 'quackQuack666',
+    paymentInfo: '4110359357548675',
+    admin: ''
+  },{
+    firstName: 'Esa',
+    lastName: 'Beck',
+    email: 'womanRock@yahoo.com',
+    password: 'waddleWaddle123',
+    paymentInfo: '8434720707851105',
+    admin: ''
+  },{
+    firstName: 'Ronnie',
+    lastName: 'Woodcock',
+    email: 'effectPoem@msn.com',
+    password: 'qu8ckQu8ck',
+    paymentInfo: '3081163066580125',
+    admin: ''
+  },{
+    firstName: 'Charley',
+    lastName: 'Buckner',
+    email: 'appearToll@hotmail.com',
+    password: 'qu8ckQu8ck',
+    paymentInfo: '1197686214148825',
+    admin: 'true'
+  },{
+    firstName: 'Seb',
+    lastName: 'Decker',
+    email: 'pardon@msn.com',
+    password: 'waddleWaddle123',
+    paymentInfo: '8434167424647971',
+    admin: ''
+  },{
+    firstName: 'Kristie',
+    lastName: 'Stubbs',
+    email: 'finishWorker@gmail.com',
+    password: 'qu8ckQu8ck',
+    paymentInfo: '7048829487755819',
+    admin: ''
+  },{
+    firstName: 'Freddy',
+    lastName: 'Berry',
+    email: 'categorySwing@gmail.com',
+    password: 'quackQuack666',
+    paymentInfo: '7178534414046579',
+    admin: ''
+  },{
+    firstName: 'Monty',
+    lastName: 'Rice',
+    email: 'archiveMask@yahoo.com',
+    password: 'waddleWaddle123',
+    paymentInfo: '6085874009254892',
+    admin: ''
+  },{
+    firstName: 'Sian',
+    lastName: 'Sinclair',
+    email: 'systemLaborer@gmail.com',
+    password: 'quackQuack666',
+    paymentInfo: '5673693077565849',
+    admin: 'true'
+  },
+]
+
+
 
 const seed = async () => {
   try {
@@ -449,6 +735,10 @@ const seed = async () => {
 
     await Promise.all(products.map(product => {
       return Product.create(product)
+    }))
+
+    await Promise.all (users.map( user => {
+      return User.create(user)
     }))
 
     console.log('Seeding success!')
