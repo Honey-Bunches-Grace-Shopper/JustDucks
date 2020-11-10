@@ -34,10 +34,7 @@ const User = db.define('user', {
     }
   },
   paymentInfo: {
-    type: Sequelize.STRING,
-    validate: {
-      isCreditCard: true
-    }
+    type: Sequelize.STRING
   },
   googleId: {
     type: Sequelize.STRING
