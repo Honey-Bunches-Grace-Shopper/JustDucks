@@ -1,10 +1,17 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import SingleProduct from './SingleProduct'
+import {fetchProducts} from '../store/product'
 
-export class AllProducts extends React.Component {
+class AllProducts extends React.Component {
   constructor(props) {
     super(props)
   }
+
+  componentDidMount() {
+    this.props.getProducts()
+  }
+
   render() {
     const {products} = this.props || {}
     return (
@@ -19,3 +26,13 @@ export class AllProducts extends React.Component {
     )
   }
 }
+
+const mapState = state => ({
+  products: state.products
+})
+
+const mapDispatch = dispatch => ({
+  getProducts: () => dispatch(fetchProducts())
+})
+
+export default connect(mapState, mapDispatch)(AllProducts)
