@@ -541,7 +541,7 @@ const users = [
     email: 'regardAppendix@gmail.com',
     password: 'quackQuack666',
     paymentInfo: '1864474804948568',
-    admin: 'true'
+    admin: true
   },
   {
     firstName: 'Rosa',
@@ -549,7 +549,7 @@ const users = [
     email: 'constituency@gmail.com',
     password: 'waddleWaddle123',
     paymentInfo: '3848032279599710',
-    admin: ''
+    admin: false
   },
   {
     firstName: 'Rylan',
@@ -557,7 +557,7 @@ const users = [
     email: 'jacketJaw@gmail.com',
     password: 'quackQuack666',
     paymentInfo: '8563810764354135',
-    admin: ''
+    admin: false
   },
   {
     firstName: 'Kaif',
@@ -565,7 +565,7 @@ const users = [
     email: 'yearnSale@aol.com',
     password: 'waddleWaddle123',
     paymentInfo: '4838608533018024',
-    admin: 'true'
+    admin: true
   },
   {
     firstName: 'Mirza',
@@ -573,7 +573,7 @@ const users = [
     email: 'excuseMe@gmail.com',
     password: 'quackQuack666',
     paymentInfo: '3556811153480220',
-    admin: ''
+    admin: false
   },
   {
     firstName: 'Rogan',
@@ -581,7 +581,7 @@ const users = [
     email: 'assertiveQuack@gmail.com',
     password: 'waddleWaddle123',
     paymentInfo: '7540041742546773',
-    admin: ''
+    admin: false
   },
   {
     firstName: 'Layla',
@@ -589,7 +589,7 @@ const users = [
     email: '@aol.com',
     password: 'qu8ckQu8ck',
     paymentInfo: '3101019293931610',
-    admin: ''
+    admin: false
   },
   {
     firstName: 'Milo',
@@ -597,7 +597,7 @@ const users = [
     email: 'stageLeft@gmail.com',
     password: 'qu8ckQu8ck',
     paymentInfo: '3344150670022390',
-    admin: ''
+    admin: false
   },
   {
     firstName: 'Nadine',
@@ -605,7 +605,7 @@ const users = [
     email: 'systematicPrize@msn.com',
     password: 'quackQuack666',
     paymentInfo: '3638454051070075',
-    admin: ''
+    admin: false
   },
   {
     firstName: 'Kacie',
@@ -613,7 +613,7 @@ const users = [
     email: 'fragrantTruth@gmail.com',
     password: 'waddleWaddle123',
     paymentInfo: '9961850469297616',
-    admin: 'true'
+    admin: true
   },
   {
     firstName: 'Aamna',
@@ -621,7 +621,7 @@ const users = [
     email: 'videoKing@aol.com',
     password: 'waddleWaddle123',
     paymentInfo: '2776134203133278',
-    admin: ''
+    admin: false
   },
   {
     firstName: 'Mysha',
@@ -629,7 +629,7 @@ const users = [
     email: 'woodFigure@msn.com',
     password: 'qu8ckQu8ck',
     paymentInfo: '',
-    admin: ''
+    admin: false
   },
   {
     firstName: 'Sonia',
@@ -637,7 +637,7 @@ const users = [
     email: 'accentFog@yahoo.com',
     password: 'waddleWaddle123',
     paymentInfo: '5052957621718474',
-    admin: ''
+    admin: false
   },
   {
     firstName: 'Teddie',
@@ -645,7 +645,7 @@ const users = [
     email: 'incredibleGiant@msn.com',
     password: 'quackQuack666',
     paymentInfo: '7817465740925989',
-    admin: ''
+    admin: false
   },
   {
     firstName: 'Roza',
@@ -653,7 +653,7 @@ const users = [
     email: 'unanimousBrain@gmail.com',
     password: 'qu8ckQu8ck',
     paymentInfo: '5411371803068159',
-    admin: 'true'
+    admin: true
   },
   {
     firstName: 'Zeynep',
@@ -661,7 +661,7 @@ const users = [
     email: 'noBreadForDucks@aol.com',
     password: 'waddleWaddle123',
     paymentInfo: '6675583421304073',
-    admin: ''
+    admin: false
   },
   {
     firstName: 'Emma',
@@ -669,7 +669,7 @@ const users = [
     email: 'breadIsBad@gmail.com',
     password: 'qu8ckQu8ck',
     paymentInfo: '9682273136391399',
-    admin: ''
+    admin: false
   },
   {
     firstName: 'Griff',
@@ -677,7 +677,7 @@ const users = [
     email: 'compromise@aol.com',
     password: 'waddleWaddle123',
     paymentInfo: '4464575022368275',
-    admin: ''
+    admin: false
   },
   {
     firstName: 'Martha',
@@ -685,7 +685,7 @@ const users = [
     email: 'dismissBread@msn.com',
     password: 'quackQuack666',
     paymentInfo: '7655740288690398',
-    admin: ''
+    admin: false
   },
   {
     firstName: 'Mikolaj',
@@ -693,7 +693,7 @@ const users = [
     email: 'voyageOfDignity@gmail.com',
     password: 'qu8ckQu8ck',
     paymentInfo: '2776134203133278',
-    admin: 'true'
+    admin: true
   },
   {
     firstName: 'Daniela',
@@ -701,7 +701,7 @@ const users = [
     email: 'privateAge@msn.com',
     password: 'waddleWaddle123',
     paymentInfo: '9961850469297616',
-    admin: ''
+    admin: false
   },
   {
     firstName: 'Nevaeh',
@@ -709,7 +709,7 @@ const users = [
     email: 'noCompromise@gmail.com',
     password: 'qu8ckQu8ck',
     paymentInfo: '3556811153480220',
-    admin: ''
+    admin: false
   },
   {
     firstName: 'Tj',
@@ -717,7 +717,7 @@ const users = [
     email: 'registerPace@aol.com',
     password: 'quackQuack666',
     paymentInfo: '3638454051070075',
-    admin: ''
+    admin: false
   },
   {
     firstName: 'Kairon',
@@ -725,7 +725,7 @@ const users = [
     email: 'snowInfection@yahoo.com',
     password: 'qu8ckQu8ck',
     paymentInfo: '6539953862480513',
-    admin: ''
+    admin: false
   },
   {
     firstName: 'Brennan',
@@ -733,7 +733,7 @@ const users = [
     email: 'dollSkin@msn.com',
     password: 'waddleWaddle123',
     paymentInfo: '5360761115550134',
-    admin: 'true'
+    admin: true
   },
   {
     firstName: 'Dev',
@@ -741,7 +741,7 @@ const users = [
     email: 'spiderJelly@aol.com',
     password: 'qu8ckQu8ck',
     paymentInfo: '4464575022368275',
-    admin: ''
+    admin: false
   },
   {
     firstName: 'Jennifer',
@@ -749,7 +749,7 @@ const users = [
     email: 'dormCousin@msn.com',
     password: 'qu8ckQu8ck',
     paymentInfo: '7540041742546773',
-    admin: ''
+    admin: false
   },
   {
     firstName: 'Kylan',
@@ -757,7 +757,7 @@ const users = [
     email: 'lieDeny@hotmail.com',
     password: 'quackQuack666',
     paymentInfo: '9065952933039751',
-    admin: ''
+    admin: false
   },
   {
     firstName: 'Gaia',
@@ -765,7 +765,7 @@ const users = [
     email: 'personalCrop@msn.com',
     password: 'waddleWaddle123',
     paymentInfo: '3344150670022390',
-    admin: 'true'
+    admin: true
   },
   {
     firstName: 'Sharna',
@@ -773,7 +773,7 @@ const users = [
     email: 'misplaceBat@gmail.com',
     password: 'qu8ckQu8ck',
     paymentInfo: '3101019293931610',
-    admin: ''
+    admin: false
   },
   {
     firstName: 'Jayce',
@@ -781,7 +781,7 @@ const users = [
     email: 'distance@aol.com',
     password: 'qu8ckQu8ck',
     paymentInfo: '4984085040179561',
-    admin: ''
+    admin: false
   },
   {
     firstName: 'Romario',
@@ -789,7 +789,7 @@ const users = [
     email: 'difficultyPump@gmail.com',
     password: 'quackQuack666',
     paymentInfo: '4110359357548675',
-    admin: ''
+    admin: false
   },
   {
     firstName: 'Esa',
@@ -797,7 +797,7 @@ const users = [
     email: 'womanRock@yahoo.com',
     password: 'waddleWaddle123',
     paymentInfo: '8434720707851105',
-    admin: ''
+    admin: false
   },
   {
     firstName: 'Ronnie',
@@ -805,7 +805,7 @@ const users = [
     email: 'effectPoem@msn.com',
     password: 'qu8ckQu8ck',
     paymentInfo: '3081163066580125',
-    admin: ''
+    admin: false
   },
   {
     firstName: 'Charley',
@@ -813,7 +813,7 @@ const users = [
     email: 'appearToll@hotmail.com',
     password: 'qu8ckQu8ck',
     paymentInfo: '1197686214148825',
-    admin: 'true'
+    admin: true
   },
   {
     firstName: 'Seb',
@@ -821,7 +821,7 @@ const users = [
     email: 'pardon@msn.com',
     password: 'waddleWaddle123',
     paymentInfo: '8434167424647971',
-    admin: ''
+    admin: false
   },
   {
     firstName: 'Kristie',
@@ -829,7 +829,7 @@ const users = [
     email: 'finishWorker@gmail.com',
     password: 'qu8ckQu8ck',
     paymentInfo: '7048829487755819',
-    admin: ''
+    admin: false
   },
   {
     firstName: 'Freddy',
@@ -837,7 +837,7 @@ const users = [
     email: 'categorySwing@gmail.com',
     password: 'quackQuack666',
     paymentInfo: '7178534414046579',
-    admin: ''
+    admin: false
   },
   {
     firstName: 'Monty',
@@ -845,7 +845,7 @@ const users = [
     email: 'archiveMask@yahoo.com',
     password: 'waddleWaddle123',
     paymentInfo: '6085874009254892',
-    admin: ''
+    admin: false
   },
   {
     firstName: 'Sian',
@@ -853,7 +853,7 @@ const users = [
     email: 'systemLaborer@gmail.com',
     password: 'quackQuack666',
     paymentInfo: '5673693077565849',
-    admin: 'true'
+    admin: true
   }
 ]
 
