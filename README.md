@@ -1,4 +1,12 @@
-# Boilermaker
+# Just Ducks
+
+WIREFRAMES - https://drive.google.com/drive/folders/18iyPNQT7wXx0U3OO8twQqkD43ls5YLC9
+
+TEAM NORMS - https://docs.google.com/document/d/105x9iuF_6EAQRqrTGbhxeWLc6BIiWKKAAgbkwlUqQH4/edit
+
+DB SCHEMA - https://docs.google.com/drawings/d/1JCpc9qckJJ1Q1Cmpn8wZzSNkj4PA29-xfMLDZ74REFg/edit
+
+##############################################
 
 _Good things come in pairs_
 
