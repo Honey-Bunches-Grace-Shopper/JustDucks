@@ -13,7 +13,7 @@ router.get('/', async (req, res, next) => {
 })
 
 //  GET  /api/products/:id
-router.get('/', async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   try {
     const {productId} = req.params
     const product = await Product.findByPk(productId)
