@@ -12,3 +12,5 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+
+router.delete('/', async (req, res, next) => {})

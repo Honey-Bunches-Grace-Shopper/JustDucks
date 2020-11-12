@@ -41,7 +41,9 @@ class Cart extends React.Component {
                     />
                   </form>
                 </div>
-                <button>Remove Item</button>
+                <button value={product.name} onClick={this.props.removeItem}>
+                  Remove Item
+                </button>
               </div>
             )
           })}
@@ -100,6 +102,11 @@ const mapDispatch = dispatch => ({
     evt.preventDefault()
     const newQuant = evt.quantity
     dispatch(changeQuantity(newQuant))
+  },
+  removeItem(evt) {
+    evt.preventDefault()
+    const removedProduct = evt.target.value
+    dispatch(deleteItem(removedProduct))
   }
 })
 
