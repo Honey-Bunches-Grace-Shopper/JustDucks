@@ -13,8 +13,8 @@ class Cart extends React.Component {
   }
 
   render() {
-    const {products} = localStorage.getItem(products) || this.props || []
-    const {cart} = localStorage.getItem(cart) || this.props || []
+    const products = localStorage.getItem(products) || this.props.products || []
+    const cart = localStorage.getItem(cart) || this.props.cart || []
 
     return (
       <div>

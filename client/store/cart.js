@@ -4,6 +4,7 @@ import axios from 'axios'
 
 const SET_CART = 'SET_CART'
 const REMOVE_ITEM = 'REMOVE_ITEM'
+const ADD_PRODUCT = 'ADD_PRODUCT'
 
 const initialState = []
 
@@ -12,9 +13,14 @@ export const setCart = cart => ({
   cart
 })
 
-export const removeItem = item => ({
+export const removeProduct = product => ({
   type: REMOVE_ITEM,
-  item
+  product
+})
+
+export const addProduct = product => ({
+  type: ADD_PRODUCT,
+  product
 })
 
 export const fetchCart = () => async dispatch => {
@@ -35,10 +41,27 @@ export const deleteItem = () => async dispatch => {
   }
 }
 
+export const addCartProduct = (
+  selectedProduct,
+  numberOfItems
+) => async dispatch => {
+  try {
+    const {data} = await axios.post('/api/cart', {
+      selectedProduct,
+      numberOfItems
+    })
+    dispatch(addProduct(data))
+  } catch (err) {
+    console.error('Error adding item to cart', err)
+  }
+}
+
 export default function(state = initialState, action) {
   switch (action.type) {
     case SET_CART:
       return action.cart
+    case ADD_PRODUCT:
+      return [...state, action.product]
     default:
       return state
   }
