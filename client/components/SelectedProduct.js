@@ -1,21 +1,27 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import SingleProduct from './SingleProduct'
-import {fetchProducts} from '../store/product'
+import {fetchSelectedProduct} from '../store/singleProduct'
 
-export class SelectedProduct extends React.Component {
+class Product extends React.Component {
   constructor(props) {
     super(props)
   }
+
+  componentDidMount() {
+    this.props.getSelectedProduct(this.props.match.params.productId)
+  }
+
   render() {
-    let selectedProduct = this.props.selectedProduct || {}
+    let {selectedProduct} = this.props || {}
+    const {name, price, description, imageUrl, helpfulness} = selectedProduct
     return (
-      <div>
-        <img src={selectedProduct.imgUrl} />
+      <div id="singleProduct">
+        <img src={imageUrl} />
         <div>
-          <h3>{selectedProduct.name}</h3>
-          <p>{selectedProduct.description}</p>
-          <p>Helpfulness: {selectedProduct.helpfulness}</p>
+          <h3>{name}</h3>
+          <p>{description}</p>
+          <p>Helpfulness: {helpfulness}</p>
+          <p>Price: ${price}</p>
         </div>
         <div className="quantity selector">
           <form onSubmit={this.handleSubmit}>
@@ -27,10 +33,22 @@ export class SelectedProduct extends React.Component {
               <option value="4">4</option>
               <option value="5">5</option>
             </select>
-            <button>Add to Nest</button>
+            <button className="addToCartButton">Add to Nest</button>
           </form>
         </div>
       </div>
     )
   }
 }
+
+const mapState = state => ({
+  selectedProduct: state.selectedProduct
+})
+
+const mapDispatch = dispatch => ({
+  getSelectedProduct: productId => dispatch(fetchSelectedProduct(productId))
+})
+
+const SelectedProduct = connect(mapState, mapDispatch)(Product)
+
+export default SelectedProduct
