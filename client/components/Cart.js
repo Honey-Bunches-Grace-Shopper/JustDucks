@@ -1,13 +1,20 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchProducts} from '../store/product'
+import cart from '../store/cart'
+import fetchCart from '../store/cart'
 
 class Cart extends React.Component {
   constructor(props) {
     super(props)
   }
 
+  componentDidMount() {
+    this.props.getCart()
+  }
+
   render() {
+    const {products} = this.props || []
+    const {cart} = this.products || []
     return (
       <div>
         <h1>Cart:</h1>
@@ -18,7 +25,7 @@ class Cart extends React.Component {
                 <img src={product.imgUrl} />
                 <div>
                   <div>{product.name}</div>
-                  <div>Quantity: {product.quantity}</div>
+                  <div>Quantity: {cart.numberOfItems}</div>
                   <div>Price per Item: {product.price}</div>
                 </div>
                 <div>
@@ -87,14 +94,18 @@ class Cart extends React.Component {
   }
 }
 
-const mapDispatch = dispatch => {
-  return {
-    handleSubmit(evt) {
-      evt.preventDefault()
-      const newQuant = evt.quantity
-      dispatch(changeQuantity(newQuant))
-    }
+const mapDispatch = dispatch => ({
+  getCart: () => dispatch(fetchCart()),
+  handleSubmit(evt) {
+    evt.preventDefault()
+    const newQuant = evt.quantity
+    dispatch(changeQuantity(newQuant))
   }
-}
+})
 
-export default connect(mapDispatch)(Cart)
+const mapState = state => ({
+  cart: state.cart,
+  products: state.products
+})
+
+export default connect(mapState, mapDispatch)(Cart)
