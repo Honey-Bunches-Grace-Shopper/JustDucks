@@ -22,6 +22,7 @@ Order.belongsTo(User)
  * instead of: const User = require('../db/models/user')
  */
 module.exports = {
+  Order,
   User,
   Product,
   PastOrder
