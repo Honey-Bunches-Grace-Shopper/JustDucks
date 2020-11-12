@@ -7,6 +7,7 @@ export default class SingleProduct extends React.Component {
   }
 
   render() {
+    console.log(this.props.isAdmin)
     let {product} = this.props
     let {id, name, price, helpfulness, description} = product
     return (
