@@ -13,8 +13,9 @@ class Cart extends React.Component {
   }
 
   render() {
-    const {products} = this.props || []
-    const {cart} = this.products || []
+    const {products} = localStorage.getItem(products) || this.props || []
+    const {cart} = localStorage.getItem(cart) || this.props || []
+
     return (
       <div>
         <h1>Cart:</h1>
@@ -38,7 +39,6 @@ class Cart extends React.Component {
                       min="0"
                       max={product.quantity}
                     />
-                    {/* this needs to be a totally quantity, not order quantity... */}
                   </form>
                 </div>
                 <button>Remove Item</button>
