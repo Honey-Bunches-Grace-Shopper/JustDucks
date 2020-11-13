@@ -9,6 +9,10 @@ class Product extends React.Component {
     super(props)
 
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.state = {
+      quantity: 0
+    }
   }
 
   componentDidMount() {
@@ -17,11 +21,17 @@ class Product extends React.Component {
 
   handleSubmit(evt) {
     evt.preventDefault()
-    this.props.addCartProduct(this.props.selectedProduct, evt.target.value)
+    console.log(evt.target)
+    this.props.addCartProduct(this.props.selectedProduct, this.state.quantity)
+    this.setState({quantity: 0})
+  }
+
+  handleChange(evt) {
+    this.setState({[evt.target.name]: evt.target.value})
+    console.log(this.state)
   }
 
   render() {
-    console.log(this.props)
     let {selectedProduct} = this.props || {}
     const {name, price, description, imageUrl, helpfulness} = selectedProduct
     return (
@@ -42,6 +52,8 @@ class Product extends React.Component {
               name="quantity"
               min="0"
               max={selectedProduct.quantity}
+              value={this.state.quantity}
+              onChange={this.handleChange}
             />
             <button className="addToCartButton">Add to Nest</button>
           </form>
