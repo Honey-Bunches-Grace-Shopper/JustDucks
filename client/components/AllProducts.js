@@ -19,7 +19,11 @@ class Products extends React.Component {
         <h2>All Products:</h2>
         <ol>
           {products.map(product => (
-            <SingleProduct product={product} key={product.id} />
+            <SingleProduct
+              product={product}
+              key={product.id}
+              isAdmin={this.props.isAdmin}
+            />
           ))}
         </ol>
       </div>
@@ -28,7 +32,8 @@ class Products extends React.Component {
 }
 
 const mapState = state => ({
-  products: state.products
+  products: state.products,
+  isAdmin: state.user.admin
 })
 
 const mapDispatch = dispatch => ({
