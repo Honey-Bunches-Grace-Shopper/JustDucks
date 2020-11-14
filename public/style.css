@@ -19,3 +19,33 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.allProducts {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px;
+}
+
+.allProducts li {
+  flex-basis: 40%;
+  border-width: 5px;
+  border-style: solid;
+  margin: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.adminControls {
+  flex-basis: 40%;
+  background-color: cornflowerblue;
+  text-align: end;
+}
+
+.adminControls button {
+  margin: 5px;
+  font-weight: 400;
+}
+
+.adminControls #deleteDuck {
+  color: red;
+}

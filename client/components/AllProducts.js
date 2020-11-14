@@ -23,7 +23,7 @@ class Products extends React.Component {
     return (
       <div>
         <h2>All Products:</h2>
-        <ol>
+        <ol className="allProducts">
           {products.map(product => (
             <SingleProduct
               product={product}

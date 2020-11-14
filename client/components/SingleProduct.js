@@ -56,6 +56,7 @@ export class SingleProduct extends React.Component {
     //Below buttons should only be visible to admins
     let adminControls = (
       <div className="adminControls">
+        <h2>ADMIN STOCK CONTROLS:</h2>
         <h4>Current Stock Level: {quantity}</h4>
         <div className="changeStock">
           <form onSubmit={this.handleSubmit}>
@@ -97,7 +98,9 @@ export class SingleProduct extends React.Component {
             />
             <button>Confirm Changes</button>
           </form>
-          <button onClick={this.handleDelete}>Delete Duck</button>
+          <button id="deleteDuck" onClick={this.handleDelete}>
+            Delete Duck
+          </button>
         </div>
       </div>
     )
@@ -105,13 +108,15 @@ export class SingleProduct extends React.Component {
 
     return (
       <li>
-        <Link to={`/products/${id}`}>
-          <h2>{name}</h2>
-        </Link>
-        <img width="100px" className="productImage" src={product.imageUrl} />
-        <h3>${price}</h3>
-        <h3>Helpfulness: {helpfulness}</h3>
-        <h3>{description}</h3>
+        <div className="productInfo">
+          <Link to={`/products/${id}`}>
+            <h2>{name}</h2>
+          </Link>
+          <img width="100px" className="productImage" src={product.imageUrl} />
+          <h3>${price}</h3>
+          <h3>Helpfulness: {helpfulness}</h3>
+          <h3>{description}</h3>
+        </div>
         {this.props.isAdmin && adminControls}
         {!this.props.isAdmin && userButton}
       </li>
