@@ -13,15 +13,18 @@ notifications:
 install:
   - npm ci # faster, goes only from package-lock
 before_script:
-  - psql -c 'create database "boilermaker-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
+  - psql -c 'create database "just-ducks-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
 script:
   - npm test # test the code
   - npm run build-client # make the bundle
-# before_deploy:
-#   - rm -rf node_modules # omit from the tarball, since we skip cleanup
-# deploy:
-#   skip_cleanup: true # prevents travis from deleting the build
-#   provider: heroku
-#   app: YOUR-HEROKU-APP-NAME-HERE # see README
-#   api_key:
-#     secure: YOUR-***ENCRYPTED***-API-KEY-HERE # see README
+before_deploy: # omit node_modules, since we set skip_cleanup below
+  - rm -rf node_modules
+deploy: # see README for details on these keys
+  # prevents travis from deleting the build
+  skip_cleanup: true
+  provider: heroku
+  # app should be your heroku app name; see README
+  app: justducks
+  # the secure key indicates an encrypted value; see README
+  api_key:
+    secure: prQAqW1Hu3YttM8Kitrk0MdqxK351hj5bFG4og4PgJOEEUnvL7WyIJdyJ5IVWPMSvYpdVwjMfnkhfjKu1vvx4ocdtzpiXe9qHLTHl73UUJi0HzZ+bWPrbv+PbORYpx9VPYzH/RN9ExN4u0wF9McgNRqKQNOXjs7WWXj4jMtT7qRykk7NsqxB/9iw0UFrZS28IEbJTsUohSeIe/KhNZI/g9zVfRtcWmuXzbX4Su5wZac7X4z/y3DL5w3ciCmuapRPtvKjNMqjoNzepEij33ZnpGoyPPzZlRqeOdsd73lCYO3LsSNwcb+FN6eeD7tykB3W3I3BqJzxtV0O1ndgIddnfL+3R1kc4Bw2kzUKxnsVzGQmGPSFBvzDP5sVeThgp72Mc3Nix5+onw7sPu1U2XLWYBSNmW8lHhp+EHR/XuDjVFkNiq+YDXHaRyaJj12iqEqa2eOg6ir7WHtZ0W03I+KTz+WKphkyRPlHh6GO0qq3YUypx1+QB352MrHuinpEpT9PmNiFoqTcSf57ld3GN3L+mifAfhSFSogdyMyxo9o+EczPxHMSxuj+gg1gE4Ok8pqgYP1buFtRM6tKIMODWnbhvw/c+H7PxWB/lBEDy8RO8ibLV9Ss4loda4oaAThtaVn6M5jUVwzE8SqsK4PBGFlfKHWXQNK15rxfMM1w3H98WAM=
