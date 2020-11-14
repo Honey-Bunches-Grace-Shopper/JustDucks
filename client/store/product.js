@@ -40,6 +40,15 @@ export const updateOneProduct = async (id, quantity) => {
   }
 }
 
+export const deleteOneProduct = async id => {
+  try {
+    console.log(id)
+    await axios.delete(`/api/stock/${id}`)
+  } catch (error) {
+    console.error('Error updating single product stock', error)
+  }
+}
+
 /**
  * REDUCER
  */

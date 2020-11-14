@@ -3,8 +3,7 @@ import {Link} from 'react-router-dom'
 //import {connect} from 'react-redux'
 
 const defaultState = {
-  quantity: 0,
-  id: ''
+  quantity: 0
 }
 
 export class SingleProduct extends React.Component {
@@ -13,6 +12,7 @@ export class SingleProduct extends React.Component {
     this.state = defaultState
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
   }
 
   // componentDidMount() {
@@ -23,16 +23,22 @@ export class SingleProduct extends React.Component {
 
   handleChange(evt) {
     this.setState({
-      [evt.target.name]: evt.target.value,
-      id: this.props.product.id
+      [evt.target.name]: evt.target.value
     })
   }
 
   async handleSubmit(event) {
-    console.log(this.state.id)
-    console.log(this.state.quantity)
+    console.log('this.props.id', this.props)
     event.preventDefault()
-    await this.props.updateProduct(this.state.id, this.state.quantity)
+    await this.props.updateProduct(this.props.id, this.state.quantity)
+    await this.props.getProducts()
+  }
+
+  async handleDelete(event) {
+    console.log('CLICK')
+    event.preventDefault()
+    await this.props.deleteProduct(this.props.id)
+    await this.props.getProducts()
   }
 
   render() {
@@ -55,6 +61,7 @@ export class SingleProduct extends React.Component {
             />
             <button>Confirm</button>
           </form>
+          <button onClick={this.handleDelete}>Delete Duck</button>
         </div>
       </div>
     )
