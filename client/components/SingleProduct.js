@@ -7,9 +7,12 @@ export default class SingleProduct extends React.Component {
   }
 
   render() {
+    let {product} = this.props
+    let {id, name, price, helpfulness, description, quantity} = product
     let adminControls = (
       <div className="adminControls">
-        <h3>Manage Stock</h3>
+        <h3>Manage Stock:</h3>
+        <h4>Current Quantity: {quantity}</h4>
         <button>Remove Item</button>
         <button>Increase Quantity</button>
         <button>Decrease Quantity</button>
@@ -18,9 +21,6 @@ export default class SingleProduct extends React.Component {
     let shopperControls = (
       <button className="addToCartButton">Add To Nest</button>
     )
-
-    let {product} = this.props
-    let {id, name, price, helpfulness, description} = product
     return (
       <li>
         <Link to={`/products/${id}`}>
@@ -30,8 +30,8 @@ export default class SingleProduct extends React.Component {
         <h3>${price}</h3>
         <h3>Helpfulness: {helpfulness}</h3>
         <h3>{description}</h3>
-        {this.props.admin && adminControls}
-        {this.props.admin && shopperControls}
+        {adminControls}
+        {shopperControls}
       </li>
     )
   }
