@@ -66,10 +66,6 @@ export class SingleProduct extends React.Component {
       </div>
     )
 
-    //this add to cart button is only for non-admins (shoppers)
-    let shopperControls = (
-      <button className="addToCartButton">Add To Nest</button>
-    )
     return (
       <li>
         <Link to={`/products/${id}`}>
@@ -79,8 +75,7 @@ export class SingleProduct extends React.Component {
         <h3>${price}</h3>
         <h3>Helpfulness: {helpfulness}</h3>
         <h3>{description}</h3>
-        {adminControls}
-        {shopperControls}
+        {this.props.isAdmin && adminControls}
       </li>
     )
   }

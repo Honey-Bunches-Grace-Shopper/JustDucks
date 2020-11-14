@@ -17,6 +17,8 @@ class Products extends React.Component {
   }
 
   render() {
+    const isAdmin = this.props.isAdmin || ''
+    console.log(isAdmin)
     const {products} = this.props || {}
     return (
       <div>
@@ -27,7 +29,7 @@ class Products extends React.Component {
               product={product}
               key={product.id}
               id={product.id}
-              isAdmin={this.props.isAdmin}
+              isAdmin={isAdmin}
               updateProduct={this.props.updateProduct}
               deleteProduct={this.props.deleteProduct}
               getProducts={this.props.getProducts}
