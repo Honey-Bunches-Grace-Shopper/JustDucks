@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import product from '../store/product'
 import {fetchSelectedProduct} from '../store/singleProduct'
 import {addCartProduct} from '../store/cart'
+import {getUser} from '../store/user'
 
 class Product extends React.Component {
   constructor(props) {
@@ -21,8 +22,11 @@ class Product extends React.Component {
 
   handleSubmit(evt) {
     evt.preventDefault()
-    console.log(evt.target)
-    this.props.addCartProduct(this.props.selectedProduct, this.state.quantity)
+    this.props.addCartProduct(
+      this.props.selectedProduct,
+      this.state.quantity,
+      this.props.userId
+    )
     this.setState({quantity: 0})
   }
 
@@ -63,13 +67,14 @@ class Product extends React.Component {
 }
 
 const mapState = state => ({
-  selectedProduct: state.selectedProduct
+  selectedProduct: state.selectedProduct,
+  userId: state.user.id
 })
 
 const mapDispatch = dispatch => ({
   getSelectedProduct: productId => dispatch(fetchSelectedProduct(productId)),
-  addCartProduct: (product, numberOfItems) =>
-    dispatch(addCartProduct(product, numberOfItems))
+  addCartProduct: (product, numberOfItems, userId) =>
+    dispatch(addCartProduct(product, numberOfItems, userId))
 })
 
 const SelectedProduct = connect(mapState, mapDispatch)(Product)
