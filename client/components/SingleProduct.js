@@ -3,6 +3,10 @@ import {Link} from 'react-router-dom'
 //import {connect} from 'react-redux'
 
 const defaultState = {
+  name: '',
+  price: '',
+  description: '',
+  helpfulness: '',
   quantity: 0
 }
 
@@ -15,11 +19,17 @@ export class SingleProduct extends React.Component {
     this.handleDelete = this.handleDelete.bind(this)
   }
 
-  // componentDidMount() {
-  //   this.setState({
-  //     id: this.props.product.id,
-  //   })
-  // }
+  componentDidMount() {
+    let product = this.props.product
+    console.log(product)
+    this.setState({
+      name: product.name,
+      price: product.price,
+      description: product.description,
+      helpfulness: product.helpfulness,
+      quantity: product.quantity
+    })
+  }
 
   handleChange(evt) {
     this.setState({
@@ -51,7 +61,35 @@ export class SingleProduct extends React.Component {
         <h4>Current Stock Level: {quantity}</h4>
         <div className="changeStock">
           <form onSubmit={this.handleSubmit}>
-            <label htmlFor="changeStock">Select New Stock Level</label>
+            <label htmlFor="changeName">Change Name:</label>
+            <input
+              type="text"
+              name="name"
+              value={this.state.name}
+              onChange={this.handleChange}
+            />
+            <label htmlFor="changePrice">Change Price:</label>
+            <input
+              type="number"
+              name="price"
+              value={this.state.price}
+              onChange={this.handleChange}
+            />
+            <label htmlFor="changeDescription">Change Description:</label>
+            <input
+              type="text"
+              name="description"
+              value={this.state.description}
+              onChange={this.handleChange}
+            />
+            <label htmlFor="changeHelpfulness">Change Helpfulness:</label>
+            <input
+              type="number"
+              name="helpfulness"
+              value={this.state.helpfulness}
+              onChange={this.handleChange}
+            />
+            <label htmlFor="changeStock">Update Stock Level:</label>
             <input
               type="number"
               name="quantity"
@@ -59,12 +97,13 @@ export class SingleProduct extends React.Component {
               value={this.state.quantity}
               onChange={this.handleChange}
             />
-            <button>Confirm</button>
+            <button>Confirm Changes</button>
           </form>
           <button onClick={this.handleDelete}>Delete Duck</button>
         </div>
       </div>
     )
+    let userButton = <button>Add To Nest</button>
 
     return (
       <li>
@@ -76,6 +115,7 @@ export class SingleProduct extends React.Component {
         <h3>Helpfulness: {helpfulness}</h3>
         <h3>{description}</h3>
         {this.props.isAdmin && adminControls}
+        {!this.props.isAdmin && userButton}
       </li>
     )
   }
