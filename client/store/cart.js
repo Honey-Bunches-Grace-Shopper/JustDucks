@@ -43,12 +43,14 @@ export const deleteItem = () => async dispatch => {
 
 export const addCartProduct = (
   selectedProduct,
-  numberOfItems
+  numberOfItems,
+  userId
 ) => async dispatch => {
   try {
     const {data} = await axios.post('/api/cart', {
       selectedProduct,
-      numberOfItems
+      numberOfItems,
+      userId
     })
     dispatch(addProduct(data))
   } catch (err) {
