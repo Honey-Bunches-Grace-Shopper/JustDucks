@@ -1,7 +1,11 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import SingleProduct from './SingleProduct'
-import {fetchProducts} from '../store/product'
+import {
+  fetchProducts,
+  updateOneProduct,
+  deleteOneProduct
+} from '../store/product'
 
 class Products extends React.Component {
   constructor(props) {
@@ -22,7 +26,11 @@ class Products extends React.Component {
             <SingleProduct
               product={product}
               key={product.id}
+              id={product.id}
               isAdmin={this.props.isAdmin}
+              updateProduct={this.props.updateProduct}
+              deleteProduct={this.props.deleteProduct}
+              getProducts={this.props.getProducts}
             />
           ))}
         </ol>
@@ -37,7 +45,9 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  getProducts: () => dispatch(fetchProducts())
+  getProducts: () => dispatch(fetchProducts()),
+  updateProduct: (id, stock) => updateOneProduct(id, stock),
+  deleteProduct: id => deleteOneProduct(id)
 })
 
 const AllProducts = connect(mapState, mapDispatch)(Products)

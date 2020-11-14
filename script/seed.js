@@ -544,6 +544,14 @@ const users = [
     admin: true
   },
   {
+    firstName: 'Ellen',
+    lastName: 'G',
+    email: 'ellen@ellen.com',
+    password: '123',
+    paymentInfo: '1864474804948568',
+    admin: true
+  },
+  {
     firstName: 'Rosa',
     lastName: 'Ochoa',
     email: 'constituency@gmail.com',
