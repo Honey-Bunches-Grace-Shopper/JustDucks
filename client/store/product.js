@@ -31,10 +31,10 @@ export const fetchProducts = () => async dispatch => {
   }
 }
 
-export const updateOneProduct = async (id, quantity) => {
+export const updateOneProduct = async (id, productInfo) => {
   try {
-    console.log('stock', quantity)
-    await axios.put(`/api/stock/${id}`, {quantity})
+    console.log('productInfo', productInfo)
+    await axios.put(`/api/stock/${id}`, productInfo)
   } catch (error) {
     console.error('Error updating single product stock', error)
   }

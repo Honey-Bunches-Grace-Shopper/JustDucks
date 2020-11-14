@@ -21,7 +21,6 @@ export class SingleProduct extends React.Component {
 
   componentDidMount() {
     let product = this.props.product
-    console.log(product)
     this.setState({
       name: product.name,
       price: product.price,
@@ -38,9 +37,8 @@ export class SingleProduct extends React.Component {
   }
 
   async handleSubmit(event) {
-    console.log('this.props.id', this.props)
     event.preventDefault()
-    await this.props.updateProduct(this.props.id, this.state.quantity)
+    await this.props.updateProduct(this.props.id, this.state)
     await this.props.getProducts()
   }
 
