@@ -1,42 +1,41 @@
 import React from 'react'
 
 const ProductForm = props => {
-  console.log(props)
   const handleChange = props.handleChange
   const handleSubmit = props.handleSubmit
   const state = props.state
   return (
     <div className="changeStock">
       <form onSubmit={handleSubmit}>
-        <label htmlFor="changeName">Change Name:</label>
+        <label htmlFor="changeName">Name:</label>
         <input
           type="text"
           name="name"
           value={state.name}
           onChange={handleChange}
         />
-        <label htmlFor="changePrice">Change Price:</label>
+        <label htmlFor="changePrice">Price:</label>
         <input
           type="number"
           name="price"
           value={state.price}
           onChange={handleChange}
         />
-        <label htmlFor="changeDescription">Change Description:</label>
+        <label htmlFor="changeDescription">Description:</label>
         <input
           type="text"
           name="description"
           value={state.description}
           onChange={handleChange}
         />
-        <label htmlFor="changeHelpfulness">Change Helpfulness:</label>
+        <label htmlFor="changeHelpfulness">Helpfulness:</label>
         <input
           type="number"
           name="helpfulness"
           value={state.helpfulness}
           onChange={handleChange}
         />
-        <label htmlFor="changeStock">Update Stock Level:</label>
+        <label htmlFor="changeStock">Stock Level:</label>
         <input
           type="number"
           name="quantity"
