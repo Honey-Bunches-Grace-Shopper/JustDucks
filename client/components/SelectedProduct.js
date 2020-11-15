@@ -5,6 +5,7 @@ import {fetchSelectedProduct} from '../store/singleProduct'
 import {addCartProduct} from '../store/cart'
 // import {getUser} from '../store/user'
 import ProductForm from './Product-Form'
+import AddToCartForm from './Add-To-Cart-Form'
 import {updateOneProduct} from '../store/product'
 
 const defaultState = {
@@ -75,25 +76,15 @@ class Product extends React.Component {
   render() {
     const isAdmin = this.props.isAdmin || ''
     let {selectedProduct} = this.props || {}
-    const {name, price, description, imageUrl, helpfulness} = selectedProduct
-    //Add to cart option (only rendered for users)
-    const userButtons = (
-      <div className="quantity selector">
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="numberOfItems">Select Duck Quantity</label>
-          <input
-            type="number"
-            id="numberOfItems"
-            name="cartQuantity"
-            min="0"
-            max={selectedProduct.quantity}
-            value={this.state.cartQuantity}
-            onChange={this.handleChange}
-          />
-          <button className="addToCartButton">Add to Nest</button>
-        </form>
-      </div>
-    )
+    const {
+      name,
+      price,
+      description,
+      imageUrl,
+      helpfulness,
+      quantity
+    } = selectedProduct
+
     return (
       <div id="singleProduct">
         <img width="300px" src={imageUrl} />
@@ -103,7 +94,15 @@ class Product extends React.Component {
           <p>Helpfulness: {helpfulness}</p>
           <p>Price: ${price}</p>
         </div>
-        {!isAdmin && userButtons}
+        {/* {!isAdmin && userButtons} */}
+        {!isAdmin && (
+          <AddToCartForm
+            handleChange={this.handleChange}
+            handleSubmit={this.handleSubmit}
+            state={this.state}
+            quantity={quantity}
+          />
+        )}
         {isAdmin && (
           <ProductForm
             handleChange={this.handleChange}
