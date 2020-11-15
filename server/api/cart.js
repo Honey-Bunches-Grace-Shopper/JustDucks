@@ -27,16 +27,26 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-router.patch('/', async (req, res, next) => {
+router.get('/:orderId', async (req, res, next) => {
   try {
-    console.log(req.body, 'body')
+    const {orderId} = req.params
+    const order = await Order.findByPk(orderId)
+    res.json(order)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.patch('/:orderId', async (req, res, next) => {
+  try {
+    const {orderId} = req.params
     await Order.update(
       {
         numberOfItems: req.body.quantity
       },
       {
         where: {
-          id: req.body.id
+          id: orderId
         }
       }
     )
@@ -46,4 +56,14 @@ router.patch('/', async (req, res, next) => {
   }
 })
 
-router.delete('/', async (req, res, next) => {})
+router.delete('/:orderId', async (req, res, next) => {
+  try {
+    const {orderId} = req.params
+    const cartNumber = await Order.findByPk(orderId)
+    console.log('cart', cartNumber)
+    await cartNumber.destroy()
+    res.sendStatus(204)
+  } catch (err) {
+    next(err)
+  }
+})
