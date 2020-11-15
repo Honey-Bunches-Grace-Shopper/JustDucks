@@ -1,9 +1,14 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-//import {connect} from 'react-redux'
+import ProductForm from './Product-Form'
 
 const defaultState = {
-  quantity: 0
+  name: '',
+  price: '',
+  description: '',
+  helpfulness: '',
+  quantity: 0,
+  imageUrl: ''
 }
 
 export class SingleProduct extends React.Component {
@@ -15,11 +20,17 @@ export class SingleProduct extends React.Component {
     this.handleDelete = this.handleDelete.bind(this)
   }
 
-  // componentDidMount() {
-  //   this.setState({
-  //     id: this.props.product.id,
-  //   })
-  // }
+  componentDidMount() {
+    let product = this.props.product
+    this.setState({
+      name: product.name,
+      price: product.price,
+      description: product.description,
+      helpfulness: product.helpfulness,
+      quantity: product.quantity,
+      imageUrl: product.imageUrl
+    })
+  }
 
   handleChange(evt) {
     this.setState({
@@ -28,14 +39,12 @@ export class SingleProduct extends React.Component {
   }
 
   async handleSubmit(event) {
-    console.log('this.props.id', this.props)
     event.preventDefault()
-    await this.props.updateProduct(this.props.id, this.state.quantity)
+    await this.props.updateProduct(this.props.id, this.state)
     await this.props.getProducts()
   }
 
   async handleDelete(event) {
-    console.log('CLICK')
     event.preventDefault()
     await this.props.deleteProduct(this.props.id)
     await this.props.getProducts()
@@ -48,34 +57,33 @@ export class SingleProduct extends React.Component {
     //Below buttons should only be visible to admins
     let adminControls = (
       <div className="adminControls">
+        <h2>ADMIN STOCK CONTROLS:</h2>
         <h4>Current Stock Level: {quantity}</h4>
-        <div className="changeStock">
-          <form onSubmit={this.handleSubmit}>
-            <label htmlFor="changeStock">Select New Stock Level</label>
-            <input
-              type="number"
-              name="quantity"
-              min="0"
-              value={this.state.quantity}
-              onChange={this.handleChange}
-            />
-            <button>Confirm</button>
-          </form>
-          <button onClick={this.handleDelete}>Delete Duck</button>
-        </div>
+        <ProductForm
+          handleSubmit={this.handleSubmit}
+          handleChange={this.handleChange}
+          state={this.state}
+        />
+        <button id="deleteDuck" onClick={this.handleDelete}>
+          Delete Duck
+        </button>
       </div>
     )
+    let userButton = <button>Add To Nest</button>
 
     return (
       <li>
-        <Link to={`/products/${id}`}>
-          <h2>{name}</h2>
-        </Link>
-        <img width="100px" className="productImage" src={product.imageUrl} />
-        <h3>${price}</h3>
-        <h3>Helpfulness: {helpfulness}</h3>
-        <h3>{description}</h3>
+        <div className="productInfo">
+          <Link to={`/products/${id}`}>
+            <h2>{name}</h2>
+          </Link>
+          <img width="100px" className="productImage" src={product.imageUrl} />
+          <h3>${price}</h3>
+          <h3>Helpfulness: {helpfulness}</h3>
+          <h3>{description}</h3>
+        </div>
         {this.props.isAdmin && adminControls}
+        {!this.props.isAdmin && userButton}
       </li>
     )
   }

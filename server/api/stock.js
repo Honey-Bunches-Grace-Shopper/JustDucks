@@ -29,3 +29,13 @@ router.delete('/:id', async (req, res, next) => {
     next(err)
   }
 })
+
+//POST    /api/stock/
+router.post('/', async (req, res, next) => {
+  try {
+    let newProduct = await Product.create(req.body)
+    res.send(newProduct)
+  } catch (error) {
+    next(error)
+  }
+})

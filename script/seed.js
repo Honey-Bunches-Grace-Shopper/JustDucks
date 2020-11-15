@@ -26,7 +26,7 @@ const products = [
     price: 25.62,
     quantity: 1,
     description: 'Sheep. Forage Harvester, bean an',
-    imageUrl: '',
+
     helpfulness: 3
   },
   {
@@ -43,7 +43,7 @@ const products = [
     price: 6.55,
     quantity: 3,
     description: 'Bean prairie dogs nails at est. ',
-    imageUrl: '',
+
     helpfulness: 1
   },
   {
@@ -104,7 +104,7 @@ const products = [
     price: 6.66,
     quantity: 10,
     description: '. bull bowels ',
-    imageUrl: '',
+
     helpfulness: 5
   },
   {
@@ -148,7 +148,7 @@ const products = [
     price: 9.99,
     quantity: 22,
     description: 'k. Coo with rabbits ect. ',
-    imageUrl: '',
+
     helpfulness: 4
   },
   {
@@ -156,7 +156,7 @@ const products = [
     price: 8.43,
     quantity: 43,
     description: 'Petting zoo bulls, ',
-    imageUrl: '',
+
     helpfulness: 5
   },
   {
@@ -164,7 +164,7 @@ const products = [
     price: 43.33,
     quantity: 32,
     description: ' Killer scourge scared, ',
-    imageUrl: '',
+
     helpfulness: 3
   },
   {
@@ -172,7 +172,7 @@ const products = [
     price: 444.33,
     quantity: 44,
     description: 'Baa potato donkey mouse, ',
-    imageUrl: '',
+
     helpfulness: 3
   },
   {
@@ -180,7 +180,7 @@ const products = [
     price: 33.33,
     quantity: 43,
     description: 'Shovels at rakes plows. Turkey d',
-    imageUrl: '',
+
     helpfulness: 3
   },
   {
@@ -188,7 +188,7 @@ const products = [
     price: 22.22,
     quantity: 11,
     description: '',
-    imageUrl: '',
+
     helpfulness: 1
   },
   {
@@ -196,7 +196,7 @@ const products = [
     price: 1.11,
     quantity: 43,
     description: '',
-    imageUrl: '',
+
     helpfulness: 4
   },
   {
@@ -204,7 +204,7 @@ const products = [
     price: 43.21,
     quantity: 33,
     description: '',
-    imageUrl: '',
+
     helpfulness: 3
   },
   {
@@ -212,7 +212,7 @@ const products = [
     price: 21.21,
     quantity: 55,
     description: '',
-    imageUrl: '',
+
     helpfulness: 2
   },
   {
@@ -220,7 +220,7 @@ const products = [
     price: 2.22,
     quantity: 2,
     description: '',
-    imageUrl: '',
+
     helpfulness: 4
   },
   {
@@ -228,7 +228,7 @@ const products = [
     price: 0.89,
     quantity: 33,
     description: '',
-    imageUrl: '',
+
     helpfulness: 1
   },
   {
@@ -236,7 +236,7 @@ const products = [
     price: 5.65,
     quantity: 77,
     description: '',
-    imageUrl: '',
+
     helpfulness: 3
   },
   {
@@ -244,7 +244,7 @@ const products = [
     price: 99.99,
     quantity: 43,
     description: '',
-    imageUrl: '',
+
     helpfulness: 1
   },
   {
@@ -252,7 +252,7 @@ const products = [
     price: 11.11,
     quantity: 33,
     description: '',
-    imageUrl: '',
+
     helpfulness: 2
   },
   {
@@ -260,7 +260,7 @@ const products = [
     price: 98.78,
     quantity: 13,
     description: '',
-    imageUrl: '',
+
     helpfulness: 5
   },
   {
@@ -268,7 +268,7 @@ const products = [
     price: 32.32,
     quantity: 111,
     description: '',
-    imageUrl: '',
+
     helpfulness: 3
   },
   {
@@ -276,7 +276,7 @@ const products = [
     price: 45.54,
     quantity: 666,
     description: '',
-    imageUrl: '',
+
     helpfulness: 2
   },
   {
@@ -284,7 +284,7 @@ const products = [
     price: 3.33,
     quantity: 111,
     description: '',
-    imageUrl: '',
+
     helpfulness: 5
   },
   {
@@ -292,7 +292,7 @@ const products = [
     price: 22.22,
     quantity: 3231,
     description: '',
-    imageUrl: '',
+
     helpfulness: 4
   },
   {
@@ -300,7 +300,7 @@ const products = [
     price: 43.43,
     quantity: 11,
     description: '',
-    imageUrl: '',
+
     helpfulness: 2
   },
   {
@@ -308,7 +308,7 @@ const products = [
     price: 22.22,
     quantity: 0,
     description: '',
-    imageUrl: '',
+
     helpfulness: 5
   },
   {
@@ -316,7 +316,7 @@ const products = [
     price: 31.31,
     quantity: 44,
     description: '',
-    imageUrl: '',
+
     helpfulness: 1
   },
   {
@@ -324,7 +324,7 @@ const products = [
     price: 45.45,
     quantity: 22,
     description: '',
-    imageUrl: '',
+
     helpfulness: 3
   },
   {
