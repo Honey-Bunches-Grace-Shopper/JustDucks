@@ -7,6 +7,7 @@ import {
   deleteOneProduct,
   createProduct
 } from '../store/product'
+import {addCartProduct} from '../store/cart'
 import ProductForm from './Product-Form'
 
 const defaultState = {
@@ -67,6 +68,7 @@ class Products extends React.Component {
                 id={product.id}
                 isAdmin={isAdmin}
                 updateProduct={this.props.updateProduct}
+                addCartProduct={this.props.addCartProduct}
                 deleteProduct={this.props.deleteProduct}
                 getProducts={this.props.getProducts}
               />
@@ -87,7 +89,9 @@ const mapDispatch = dispatch => ({
   getProducts: () => dispatch(fetchProducts()),
   updateProduct: (id, stock) => updateOneProduct(id, stock),
   deleteProduct: id => deleteOneProduct(id),
-  newProduct: product => createProduct(product)
+  newProduct: product => createProduct(product),
+  addCartProduct: (product, numberOfItems, userId) =>
+    dispatch(addCartProduct(product, numberOfItems, userId))
 })
 
 const AllProducts = connect(mapState, mapDispatch)(Products)
