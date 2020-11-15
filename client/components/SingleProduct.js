@@ -1,13 +1,14 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-//import {connect} from 'react-redux'
+import ProductForm from './Product-Form'
 
 const defaultState = {
   name: '',
   price: '',
   description: '',
   helpfulness: '',
-  quantity: 0
+  quantity: 0,
+  imageUrl: ''
 }
 
 export class SingleProduct extends React.Component {
@@ -26,7 +27,8 @@ export class SingleProduct extends React.Component {
       price: product.price,
       description: product.description,
       helpfulness: product.helpfulness,
-      quantity: product.quantity
+      quantity: product.quantity,
+      imageUrl: product.imageUrl
     })
   }
 
@@ -58,7 +60,12 @@ export class SingleProduct extends React.Component {
       <div className="adminControls">
         <h2>ADMIN STOCK CONTROLS:</h2>
         <h4>Current Stock Level: {quantity}</h4>
-        <div className="changeStock">
+        <ProductForm
+          handleSubmit={this.handleSubmit}
+          handleChange={this.handleChange}
+          state={this.state}
+        />
+        {/* <div className="changeStock">
           <form onSubmit={this.handleSubmit}>
             <label htmlFor="changeName">Change Name:</label>
             <input
@@ -97,11 +104,11 @@ export class SingleProduct extends React.Component {
               onChange={this.handleChange}
             />
             <button>Confirm Changes</button>
-          </form>
-          <button id="deleteDuck" onClick={this.handleDelete}>
-            Delete Duck
-          </button>
-        </div>
+          </form> */}
+        <button id="deleteDuck" onClick={this.handleDelete}>
+          Delete Duck
+        </button>
+        {/* </div> */}
       </div>
     )
     let userButton = <button>Add To Nest</button>
