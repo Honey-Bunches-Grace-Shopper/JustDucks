@@ -1,32 +1,50 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import cart from '../store/cart'
-import fetchCart from '../store/cart'
+import {fetchCart, changeQuantity} from '../store/cart'
 
 class Cart extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      quantity: 0,
+      id: ''
+    }
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
   componentDidMount() {
     this.props.getCart()
   }
 
+  handleSubmit(evt) {
+    evt.preventDefault()
+    this.props.changeQuantity(this.state.quantity, this.state.id)
+    this.setState({quantity: 0})
+    this.setState({id: ''})
+  }
+
+  handleChange(evt) {
+    this.setState({[evt.target.id]: evt.target.value})
+    this.setState({id: evt.target.name})
+  }
+
   render() {
-    const products = localStorage.getItem(products) || this.props.products || []
     const cart = localStorage.getItem(cart) || this.props.cart || []
 
     return (
       <div>
         <h1>Cart:</h1>
         <div className="cart-items">
-          {products.map(product => {
+          {cart.map(cartEntry => {
+            let product = cartEntry.products[0]
+            let id = cartEntry.id
             return (
-              <div>
+              <div key={cartEntry.id}>
                 <img src={product.imgUrl} />
                 <div>
                   <div>{product.name}</div>
-                  <div>Quantity: {cart.numberOfItems}</div>
+                  <div>Quantity: {cartEntry.numberOfItems}</div>
                   <div>Price per Item: {product.price}</div>
                 </div>
                 <div>
@@ -35,10 +53,14 @@ class Cart extends React.Component {
                     <input
                       type="number"
                       id="quantity"
-                      name="quantity"
+                      name={id}
                       min="0"
                       max={product.quantity}
+                      onChange={this.handleChange}
                     />
+                    <button className="changeQuantityButton">
+                      Submit Change
+                    </button>
                   </form>
                 </div>
                 <button value={product.name} onClick={this.props.removeItem}>
@@ -50,7 +72,7 @@ class Cart extends React.Component {
         </div>
         <div className="cart-total">
           <h4>Total</h4>
-          <div>Price: {products.total}</div>
+          <div>Price:</div>
         </div>
         <div className="checkout">
           <div>Log In Above or Checkout as Guest:</div>
@@ -98,21 +120,16 @@ class Cart extends React.Component {
 
 const mapDispatch = dispatch => ({
   getCart: () => dispatch(fetchCart()),
-  handleSubmit(evt) {
-    evt.preventDefault()
-    const newQuant = evt.quantity
-    dispatch(changeQuantity(newQuant))
-  },
-  removeItem(evt) {
-    evt.preventDefault()
-    const removedProduct = evt.target.value
-    dispatch(deleteItem(removedProduct))
-  }
+  // removeItem(evt) {
+  //   evt.preventDefault()
+  //   const removedProduct = evt.target.value
+  //   dispatch(deleteItem(removedProduct))
+  // },
+  changeQuantity: (quantity, id) => dispatch(changeQuantity(quantity, id))
 })
 
 const mapState = state => ({
-  cart: state.cart,
-  products: state.products
+  cart: state.cart
 })
 
 export default connect(mapState, mapDispatch)(Cart)

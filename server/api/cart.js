@@ -5,6 +5,9 @@ module.exports = router
 router.get('/', async (req, res, next) => {
   try {
     const orders = await Order.findAll({
+      where: {
+        submitted: null
+      },
       include: Product
     })
     res.json(orders)
@@ -19,6 +22,25 @@ router.post('/', async (req, res, next) => {
     const product = req.body.selectedProduct
     await newOrder.addProduct(product.id)
     res.json(newOrder)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.patch('/', async (req, res, next) => {
+  try {
+    console.log(req.body, 'body')
+    await Order.update(
+      {
+        numberOfItems: req.body.quantity
+      },
+      {
+        where: {
+          id: req.body.id
+        }
+      }
+    )
+    res.sendStatus(204)
   } catch (err) {
     next(err)
   }
