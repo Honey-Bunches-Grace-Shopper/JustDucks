@@ -16,9 +16,15 @@ const User = db.define('user', {
     unique: true,
     allowNull: false
   },
-  address: {
+  streetAddress: {
     type: Sequelize.TEXT,
     allowNull: true
+  },
+  city: {
+    type: Sequelize.STRING
+  },
+  zipCode: {
+    type: Sequelize.INTEGER
   },
   password: {
     type: Sequelize.STRING,
@@ -37,7 +43,19 @@ const User = db.define('user', {
       return () => this.getDataValue('salt')
     }
   },
-  paymentInfo: {
+  cardNumber: {
+    type: Sequelize.STRING
+  },
+  ssid: {
+    type: Sequelize.INTEGER
+  },
+  cardType: {
+    type: Sequelize.STRING
+  },
+  billingZip: {
+    type: Sequelize.INTEGER
+  },
+  experation: {
     type: Sequelize.STRING
   },
   googleId: {
