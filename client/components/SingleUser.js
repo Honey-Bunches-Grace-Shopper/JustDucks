@@ -1,72 +1,91 @@
 import React from 'react'
-import {connect} from 'react-redux'
-import UpdateUser from './UpdateUser'
-import {} from '../store/user'
+import {Link} from 'react-router-dom'
+import UserForm from './User-Form'
 
-class User extends React.Component {
+const defaultState = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  address: '',
+  paymentInfo: ''
+}
+
+export class SingleUser extends React.Component {
   constructor(props) {
     super(props)
+    this.state = defaultState
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
   }
 
   componentDidMount() {
-    this.props.getSingleUser()
+    let user = this.props.user
+    this.setState({
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      address: user.address,
+      paymentInfo: user.paymentInfo
+    })
+  }
+
+  handleChange(evt) {
+    this.setState({
+      [evt.target.name]: evt.target.value
+    })
+  }
+
+  async handleSubmit(event) {
+    event.preventDefault()
+    await this.props.updateUser(this.props.id, this.state)
+    await this.props.getUsers()
+  }
+
+  async handleDelete(event) {
+    event.preventDefault()
+    await this.props.deleteUser(this.props.id)
+    await this.props.getUsers()
   }
 
   render() {
-    console.log('user-->', user)
-    const {user} = this.props
-    const {
-      id,
-      firstName,
-      lastName,
-      email,
-      address,
-      paymentInfo,
-      isAdmin,
-      password
-    } = user
+    let {user} = this.props
+    let {id, firstName, lastName, email, address, paymentInfo} = user
+
+    //Below buttons should only be visible to admins
+    let adminControls = (
+      <div className="adminControls">
+        <h2>ADMIN CONTROLS FOR USER MANAGEMENT:</h2>
+        <h4>USER_ID: {id}</h4>
+        <UserForm
+          handleSubmit={this.handleSubmit}
+          handleChange={this.handleChange}
+          state={this.state}
+        />
+        <button id="deleteUser" onClick={this.handleDelete}>
+          Delete User
+        </button>
+      </div>
+    )
+    let userButton = <button>Add New User</button>
 
     return (
-      <div id="userProfile">
-        <h2>User Profile</h2>
-        <h3>
-          Welcome back, {firstName} {lastName}
-        </h3>
-        <ul id="profileDetail">
-          <li>
-            Name: {firstName} {lastName}
-          </li>
-          <li>Email Address: {email}</li>
-          <li>Default Shipping Address: {address}</li>
-          <li>Payment Info: {paymentInfo}</li>
-          <li>Password: {password}</li>
-        </ul>
-        <div>
-          {/* //*add updateuser function */}
-          <UpdateUser userId={id} />
+      <li>
+        <div className="userInfo">
+          <Link to={`/users/${id}`}>
+            <h2>
+              {firstName} {lastName}
+            </h2>
+          </Link>
+          <h3>${price}</h3>
+          <h3>Helpfulness: {helpfulness}</h3>
+          <h3>{description}</h3>
         </div>
-        {isAdmin ? (
-          <div>
-            Admin Settings
-            <button type="button" onClick={() => {}}>
-              Set as Admin
-            </button>
-          </div>
-        ) : (
-          ''
-        )}
-      </div>
+        {this.props.isAdmin && adminControls}
+        {!this.props.isAdmin && userButton}
+      </li>
     )
   }
 }
 
-const mapState = state => ({
-  singleUser: state.user
-})
-
-const mapDispatch = dispatch => ({
-  getSingleUser: () => dispatch()
-})
-
-const SingleUser = connect(mapState, mapDispatch)(User)
 export default SingleUser

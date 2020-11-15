@@ -7,8 +7,7 @@ class UpdateUser extends React.Component {
       name: '',
       email: '',
       address: '',
-      paymentInfo: '',
-      password: ''
+      paymentInfo: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -16,21 +15,18 @@ class UpdateUser extends React.Component {
 
   handleSubmit(evt) {
     evt.preventDefault()
-    const {name, email, address, paymentInfo, password} = this.state
-    const {userId} = this.props
-    //call update thunk function
-
+    const userInfo = this.state
+    this.props.handleUpdate(userInfo)
     this.setState({
       name: '',
       email: '',
       address: '',
-      paymentInfo: '',
-      password: ''
+      paymentInfo: ''
     })
   }
 
   handleChange(evt) {
-    this.setState({[evt.target.name]: e.target.value})
+    this.setState({[evt.target.name]: evt.target.value})
   }
 
   render() {
@@ -51,27 +47,21 @@ class UpdateUser extends React.Component {
           value={this.state.email}
           onChange={this.handleChange}
         />
-        <label htmlFor="address">Email</label>
+        <label htmlFor="address">Address</label>
         <input
           type="text"
           name="address"
           value={this.state.address}
           onChange={this.handleChange}
         />
-        <label htmlFor="paymentInfo">Email</label>
+        <label htmlFor="paymentInfo">PaymentInfo</label>
         <input
           type="text"
           name="paymentInfo"
           value={this.state.paymentInfo}
           onChange={this.handleChange}
         />
-        <label htmlFor="password">Email</label>
-        <input
-          type="text"
-          name="password"
-          value={this.state.password}
-          onChange={this.handleChange}
-        />
+
         <button type="submit">Save Changes</button>
       </form>
     )
