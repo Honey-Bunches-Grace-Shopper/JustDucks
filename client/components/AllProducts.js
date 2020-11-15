@@ -46,29 +46,33 @@ class Products extends React.Component {
     const isAdmin = this.props.isAdmin || ''
     const {products} = this.props || {}
     return (
-      <div>
-        {isAdmin && <h3>Create New Product:</h3>}
-        {isAdmin && (
-          <ProductForm
-            handleChange={this.handleChange}
-            handleSubmit={this.handleSubmit}
-            state={this.state}
-          />
-        )}
-        <h2>All Products:</h2>
-        <ol className="allProducts">
-          {products.map(product => (
-            <SingleProduct
-              product={product}
-              key={product.id}
-              id={product.id}
-              isAdmin={isAdmin}
-              updateProduct={this.props.updateProduct}
-              deleteProduct={this.props.deleteProduct}
-              getProducts={this.props.getProducts}
+      <div className="container">
+        <div className="admin">
+          {isAdmin && <h3 className="center">Create New Product:</h3>}
+          {isAdmin && (
+            <ProductForm
+              handleChange={this.handleChange}
+              handleSubmit={this.handleSubmit}
+              state={this.state}
             />
-          ))}
-        </ol>
+          )}
+        </div>
+        <div className="items">
+          <h1 className="center">All Products:</h1>
+          <ol className="allProducts">
+            {products.map(product => (
+              <SingleProduct
+                product={product}
+                key={product.id}
+                id={product.id}
+                isAdmin={isAdmin}
+                updateProduct={this.props.updateProduct}
+                deleteProduct={this.props.deleteProduct}
+                getProducts={this.props.getProducts}
+              />
+            ))}
+          </ol>
+        </div>
       </div>
     )
   }

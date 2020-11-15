@@ -11,7 +11,8 @@ label {
 }
 
 nav a {
-  display: inline-block;
+  display: flex;
+  flex-direction: row;
   margin: 1em;
 }
 
@@ -24,6 +25,15 @@ form div {
   display: flex;
   flex-wrap: wrap;
   margin: 10px;
+  justify-content: space-around;
+}
+
+.container {
+  display: flex;
+}
+
+.center {
+  text-align: center;
 }
 
 .allProducts li {
