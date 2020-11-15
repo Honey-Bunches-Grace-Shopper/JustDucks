@@ -42,4 +42,18 @@ router.get('/me', (req, res) => {
   res.json(req.user)
 })
 
+router.put('/me', async (req, res, next) => {
+  try {
+    const userInstance = req.user
+    const {name, email, address, paymentInfo} = req.body
+    const nameArr = name.split(' ')
+    const firstName = nameArr[0]
+    const lastName = nameArr[1]
+    await userInstance.update(firstName, lastName, email, address, paymentInfo)
+    res.json(userInstance)
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.use('/google', require('./google'))
