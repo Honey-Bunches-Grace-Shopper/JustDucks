@@ -8,7 +8,8 @@ class UserForm extends React.Component {
       streetAddress: '',
       city: '',
       zipCode: '',
-      paymentInfo: '',
+      cardNumber: '',
+
       ...this.props.user,
       name:
         (this.props.user.firstName || '') +
@@ -19,16 +20,21 @@ class UserForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleSubmit(evt) {
+  async handleSubmit(evt) {
     evt.preventDefault()
-    this.props.handleUpdate(this.state)
+    await this.props.handleUpdate(this.state)
+    await this.props.getUser()
     this.setState({
-      name: '',
       email: '',
       streetAddress: '',
       city: '',
       zipCode: '',
-      paymentInfo: ''
+      cardNumber: '',
+      ...this.props.user,
+      name:
+        (this.props.user.firstName || '') +
+        ' ' +
+        (this.props.user.lastName || '')
     })
   }
 
@@ -75,11 +81,11 @@ class UserForm extends React.Component {
           value={this.state.zipCode}
           onChange={this.handleChange}
         />
-        <label htmlFor="paymentInfo">PaymentInfo</label>
+        <label htmlFor="cardNumber">Card Number</label>
         <input
           type="text"
-          name="paymentInfo"
-          value={this.state.paymentInfo}
+          name="cardNumber"
+          value={this.state.cardNumber}
           onChange={this.handleChange}
         />
         <button type="submit">Save Changes</button>

@@ -1,5 +1,4 @@
 import axios from 'axios'
-import UserForm from '../components/User-Form'
 import history from '../history'
 
 /**
