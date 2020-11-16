@@ -52,6 +52,7 @@ class Cart extends React.Component {
               cart={this.state}
               removeItem={this.props.removeItem}
               cartEntry={cartEntry}
+              key={cartEntry.id}
               id={cartEntry.id}
               changeQuantity={this.props.changeQuantity}
             />

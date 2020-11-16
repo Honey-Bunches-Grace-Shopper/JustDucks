@@ -42,11 +42,11 @@ class OneCartEntry extends React.Component {
 
   render() {
     let cartEntry = this.props.cartEntry
-    let product = this.props.cartEntry.products[0]
+    let product = this.props.cartEntry.products[0] || {}
     let id = this.props.cartEntry.id
     return (
       <div key={cartEntry.id}>
-        <img src={product.imgUrl} />
+        {/* <img src={product.imgUrl || ''} /> */}
         <div>
           <div>{product.name}</div>
           <div>Quantity: {cartEntry.numberOfItems}</div>

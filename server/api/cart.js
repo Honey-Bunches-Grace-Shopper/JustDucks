@@ -18,14 +18,50 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    const newOrder = await Order.create(req.body)
-    const product = req.body.selectedProduct
-    await newOrder.addProduct(product.id)
-    res.json(newOrder)
+    let quant = Number(req.body.numberOfItems)
+    const productId = req.body.selectedProduct.id
+    //CHECK TO SEE IF THIS ITEM IS IN THE CART
+    let existing = await PastOrder.findAll({
+      where: {
+        productId: productId
+      }
+    })
+    //IF IT'S IN THE CART, INCREASE QUANTITY USING REQ.BODY
+    console.log(existing)
+    if (existing.length > 0) {
+      let orderId = existing[0].dataValues.orderId
+      let oldOrder = await Order.findByPk(orderId)
+      let oldOrderQuant = Number(oldOrder.numberOfItems)
+      let newQuant = oldOrderQuant + quant
+      let updatedOrder = await oldOrder.update({
+        numberOfItems: `${newQuant}`
+      })
+      console.log(updatedOrder)
+      res.json(updatedOrder)
+      //IF IT'S NOT IN THE CART YET, CREATE IT
+    } else {
+      const newOrder = await Order.create(req.body)
+      const product = req.body.selectedProduct
+      await newOrder.addProduct(product.id)
+      console.log(newOrder)
+      res.json(newOrder)
+    }
   } catch (err) {
     next(err)
   }
 })
+
+//KATELYNN'S OLD ROUTE INCASE WE NEED IT BACK!
+// router.post('/', async (req, res, next) => {
+//   try {
+//     const newOrder = await Order.create(req.body)
+//     const product = req.body.selectedProduct
+//     await newOrder.addProduct(product.id)
+//     res.json(newOrder)
+//   } catch (err) {
+//     next(err)
+//   }
+// })
 
 router.get('/:orderId', async (req, res, next) => {
   try {
