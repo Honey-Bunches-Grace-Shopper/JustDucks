@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {fetchCart, changeQuantity, removeItem} from '../store/cart'
 import OneCartEntry from './OneCartEntry'
 
-class Cart extends React.Component {
+class DisconnectedCart extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -49,6 +49,7 @@ class Cart extends React.Component {
         <div className="cart-items">
           {cart.map(cartEntry => (
             <OneCartEntry
+              key={cartEntry.id}
               cart={this.state}
               removeItem={this.props.removeItem}
               cartEntry={cartEntry}
@@ -180,4 +181,6 @@ const mapState = state => ({
   cart: state.cart
 })
 
-export default connect(mapState, mapDispatch)(Cart)
+const Cart = connect(mapState, mapDispatch)(DisconnectedCart)
+
+export default Cart

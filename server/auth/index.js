@@ -45,11 +45,22 @@ router.get('/me', (req, res) => {
 router.put('/me', async (req, res, next) => {
   try {
     const userInstance = req.user
-    const {name, email, address, paymentInfo} = req.body
-    const nameArr = name.split(' ')
-    const firstName = nameArr[0]
-    const lastName = nameArr[1]
-    await userInstance.update(firstName, lastName, email, address, paymentInfo)
+    const {name} = req.body
+
+    let updateObject = {}
+    for (let [key, value] of Object.entries(req.body)) {
+      if (key) {
+        updateObject[key] = value
+      }
+    }
+
+    if (name) {
+      const nameArr = name.split(' ')
+      updateObject.firstName = nameArr[0]
+      updateObject.lastName = nameArr[1]
+    }
+
+    await userInstance.update(updateObject)
     res.json(userInstance)
   } catch (err) {
     next(err)
