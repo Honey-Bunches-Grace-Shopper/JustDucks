@@ -2,11 +2,14 @@ const router = require('express').Router()
 const {Order, Product, PastOrder} = require('../db/models')
 module.exports = router
 
-router.get('/', async (req, res, next) => {
+// GET /api/cart/user/userId
+router.get('/user/:userId', async (req, res, next) => {
   try {
+    let userId = req.params.userId
     const orders = await Order.findAll({
       where: {
-        submitted: null
+        submitted: null,
+        userId: userId
       },
       include: Product
     })
@@ -16,6 +19,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+// POST /api/cart
 router.post('/', async (req, res, next) => {
   try {
     let quant = Number(req.body.numberOfItems)
@@ -63,6 +67,7 @@ router.post('/', async (req, res, next) => {
 //   }
 // })
 
+// GET /api/cart/orderid
 router.get('/:orderId', async (req, res, next) => {
   try {
     const {orderId} = req.params
@@ -73,6 +78,7 @@ router.get('/:orderId', async (req, res, next) => {
   }
 })
 
+// PATCH /api/cart/orderid
 router.patch('/:orderId', async (req, res, next) => {
   try {
     const {orderId} = req.params

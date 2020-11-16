@@ -2,14 +2,15 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchCart, changeQuantity, removeItem, submitCart} from '../store/cart'
 import OneCartEntry from './OneCartEntry'
+import {me} from '../store/user'
 
 const defaultState = {
+  userId: '',
   firstName: '',
   lastName: '',
   streetAddress: '',
   city: '',
   zipCode: '',
-  name: '',
   ccNumber: '',
   ssid: '',
   cardType: '',
@@ -25,8 +26,22 @@ class Cart extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  componentDidMount() {
-    this.props.getCart()
+  async componentDidMount() {
+    await this.props.getUser()
+    await this.setState({
+      userId: this.props.user.id,
+      firstName: this.props.user.firstName,
+      lastName: this.props.user.lastName,
+      streetAddress: this.props.user.streetAddress,
+      city: this.props.user.city,
+      zipCode: this.props.user.zipCode,
+      ccNumber: this.props.user.ccNumber,
+      ssid: this.props.user.ssid,
+      cardType: this.props.user.cardType,
+      billingZip: this.props.user.billingZip,
+      experation: this.props.user.experation
+    })
+    await this.props.getCart(this.state.userId)
   }
 
   handleChange(evt) {
@@ -43,6 +58,7 @@ class Cart extends React.Component {
   }
 
   render() {
+    // console.log('userId in render', this.props.user.id)
     const cart = this.props.cart || []
     return (
       <div>
@@ -105,14 +121,14 @@ class Cart extends React.Component {
               </div>
               <div>
                 <h4>INPUT CREDIT CARD</h4>
-                <label htmlFor="name">Name:</label>
+                {/* <label htmlFor="name">Name:</label>
                 <input
                   type="text"
                   id="name"
                   name="name"
                   onChange={this.handleChange}
                   value={this.state.name}
-                />
+                /> */}
                 <label htmlFor="ccNumber">Credit Card Number:</label>
                 <input
                   type="password"
@@ -165,14 +181,16 @@ class Cart extends React.Component {
 }
 
 const mapDispatch = dispatch => ({
-  getCart: () => dispatch(fetchCart()),
+  getUser: () => dispatch(me()),
+  getCart: userId => dispatch(fetchCart(userId)),
   removeItem: orderId => dispatch(removeItem(orderId)),
   changeQuantity: (quantity, id) => dispatch(changeQuantity(quantity, id))
   // submitCart: () => dispatch(submitCart()),
 })
 
 const mapState = state => ({
-  cart: state.cart
+  cart: state.cart,
+  user: state.user
 })
 
 export default connect(mapState, mapDispatch)(Cart)
