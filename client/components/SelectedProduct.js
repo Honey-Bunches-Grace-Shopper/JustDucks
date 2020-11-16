@@ -52,21 +52,13 @@ class Product extends React.Component {
     } else {
       // eslint-disable-next-line no-lonely-if
       if (!localStorage.getItem(`${this.state.name}`)) {
-        console.log('in the if')
         localStorage.setItem(`${this.state.name}`, JSON.stringify(this.state))
       } else {
         let existing = JSON.parse(localStorage.getItem(`${this.state.name}`))
         let oldQuant = Number(existing.cartQuantity) || 0
         let newQuant = Number(oldQuant) + Number(this.state.cartQuantity)
         existing.cartQuantity = newQuant
-
-        console.log('this.state.cartQuantity', this.state.cartQuantity)
-        console.log('existing', existing)
-        console.log('oldQuant', oldQuant)
-        console.log('newQuant', newQuant)
         this.setState({cartQuantity: newQuant})
-        console.log('this.state.cartQuantity after', this.state.cartQuantity)
-
         localStorage.setItem(`${this.state.name}`, JSON.stringify(existing))
       }
     }
