@@ -6,7 +6,7 @@ const products = [
   {
     name: 'Scrooge McDuck',
     price: 4.95,
-    quantity: 2,
+    quantity: 240,
     description: 'Apples ducks straw, quail a ostriches donkey',
     imageUrl:
       'https://images-na.ssl-images-amazon.com/images/I/51VXgNZFIoL._AC_SL1424_.jpg',
@@ -15,7 +15,7 @@ const products = [
   {
     name: 'Huey Duck',
     price: 6.32,
-    quantity: 5,
+    quantity: 500,
     description: 'Goose hammers cattle rats in crows',
     imageUrl:
       'https://www.smilemakers.com/media/catalog/product/cache/c29ebedb4f4eb19dadc07843c1e972ce/H/O/HOL1062.jpg',
@@ -24,7 +24,7 @@ const products = [
   {
     name: 'Bentina Beakley',
     price: 25.62,
-    quantity: 1,
+    quantity: 100,
     description: 'Sheep. Forage Harvester, bean an',
 
     helpfulness: 3
@@ -32,7 +32,7 @@ const products = [
   {
     name: 'Duckworth the Butler',
     price: 39.42,
-    quantity: 2,
+    quantity: 200,
     description: ' Coo with rabbits ect.',
     imageUrl:
       'https://imgprd19.hobbylobby.com/3/58/ee/358ee24d0084297774e8e38ca5511ba64d15d664/700Wx700H-236927-0419.jpg',
@@ -41,7 +41,7 @@ const products = [
   {
     name: 'Bigtime Beagle',
     price: 6.55,
-    quantity: 3,
+    quantity: 300,
     description: 'Bean prairie dogs nails at est. ',
 
     helpfulness: 1
@@ -49,7 +49,7 @@ const products = [
   {
     name: 'Burger Beagle',
     price: 4.65,
-    quantity: 4,
+    quantity: 400,
     description: 'Metal. Apples ducks straw, q',
     imageUrl: 'https://ihfiles.com/products/64/26859/p/4/522808.jpeg',
     helpfulness: 5
@@ -57,7 +57,7 @@ const products = [
   {
     name: 'Bouncer Beagle',
     price: 543.43,
-    quantity: 5,
+    quantity: 500,
     description: 'Garden windmill chicks',
     imageUrl:
       'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/coloured-rubber-ducks-royalty-free-image-1586856701.jpg?crop=1.00xw:0.777xh;0,0.155xh&resize=1200:*',
@@ -66,7 +66,7 @@ const products = [
   {
     name: 'Flintheart Glomgold',
     price: 66.66,
-    quantity: 6,
+    quantity: 600,
     description: 'armers market and cultivator ostrich. ',
     imageUrl:
       'https://www.getdigital.eu/web/getdigital/gfx/products/__generated__resized/1100x1100/12889ente.jpg',
@@ -75,7 +75,7 @@ const products = [
   {
     name: 'Magica De Spell',
     price: 4.32,
-    quantity: 7,
+    quantity: 700,
     description: ' Peacocks baa ostr',
     imageUrl:
       'https://www.partypalooza.com/Merchant2/graphics/00000001/mermaidsducksFE.jpg',
@@ -84,7 +84,7 @@ const products = [
   {
     name: 'Dewey Duck',
     price: 5.43,
-    quantity: 8,
+    quantity: 85,
     description: 't, raccoons rhubarb outhouse a',
     imageUrl:
       'https://www.universitysupplystore.com/outerweb/product_images/13251840l.jpg',
@@ -93,7 +93,7 @@ const products = [
   {
     name: 'Louie Duck',
     price: 1.11,
-    quantity: 9,
+    quantity: 90,
     description: 'Baa potato donkey mouse',
     imageUrl:
       'https://www.qualitylogoproducts.com/toys-and-fun/matte-rubber-ducks-hq.jpg',
@@ -102,7 +102,7 @@ const products = [
   {
     name: 'Webby Vanderquack',
     price: 6.66,
-    quantity: 10,
+    quantity: 100,
     description: '. bull bowels ',
 
     helpfulness: 5
@@ -110,7 +110,7 @@ const products = [
   {
     name: 'Launchpad McQuack',
     price: 3.21,
-    quantity: 0,
+    quantity: 100,
     description: 'ad with kale augers ha',
     imageUrl:
       'https://static1.squarespace.com/static/53208ff6e4b00fbb0f1c2d65/533088f1e4b017ad58855af2/5c69ca397817f7d0df538357/1589148058066/?format=1500w',
@@ -119,7 +119,7 @@ const products = [
   {
     name: 'Gyro Gearloose',
     price: 4.44,
-    quantity: 2,
+    quantity: 200,
     description: ', cultivator brussel sprouts harrow',
     imageUrl:
       'https://cdn.shopify.com/s/files/1/0115/4891/7819/products/23213_Rubber_Duck_Sea_Turtle_67063c07-f8d2-427a-bea0-5dc5e019424c_grande.jpg?v=1557903343',
@@ -128,7 +128,7 @@ const products = [
   {
     name: 'Baggy Beagle',
     price: 0.99,
-    quantity: 1,
+    quantity: 150,
     description: 'irp. Veterinarian at Seeder eggs with wate',
     imageUrl:
       'https://s3.distributorcentral.com/uploads/6/1/6172FA6BE110D08BC61F6307A7E71B3C.jpg',
@@ -137,7 +137,7 @@ const products = [
   {
     name: 'Mrs. Featherby',
     price: 6.43,
-    quantity: 5,
+    quantity: 500,
     description: 'crows doggies frogs crickets ch',
     imageUrl:
       'https://d1wwyfhxuarwk4.cloudfront.net/images/products/xl/6002a12dbb8fd002f6693f893c613438e6761.jpg',
@@ -146,7 +146,7 @@ const products = [
   {
     name: 'Mrs. Quackfaster',
     price: 9.99,
-    quantity: 22,
+    quantity: 220,
     description: 'k. Coo with rabbits ect. ',
 
     helpfulness: 4
@@ -154,7 +154,7 @@ const products = [
   {
     name: 'Ma Beagle',
     price: 8.43,
-    quantity: 43,
+    quantity: 430,
     description: 'Petting zoo bulls, ',
 
     helpfulness: 5
@@ -162,7 +162,7 @@ const products = [
   {
     name: 'Goldie OGilt',
     price: 43.33,
-    quantity: 32,
+    quantity: 320,
     description: ' Killer scourge scared, ',
 
     helpfulness: 3
@@ -170,7 +170,7 @@ const products = [
   {
     name: 'Donald Duck',
     price: 444.33,
-    quantity: 44,
+    quantity: 440,
     description: 'Baa potato donkey mouse, ',
 
     helpfulness: 3
@@ -178,7 +178,7 @@ const products = [
   {
     name: 'Doofus Drake',
     price: 33.33,
-    quantity: 43,
+    quantity: 430,
     description: 'Shovels at rakes plows. Turkey d',
 
     helpfulness: 3
@@ -186,7 +186,7 @@ const products = [
   {
     name: 'Ludwig Von Drake',
     price: 22.22,
-    quantity: 11,
+    quantity: 110,
     description: '',
 
     helpfulness: 1
@@ -194,7 +194,7 @@ const products = [
   {
     name: 'Gladstone Gander',
     price: 1.11,
-    quantity: 43,
+    quantity: 430,
     description: '',
 
     helpfulness: 4
@@ -202,7 +202,7 @@ const products = [
   {
     name: 'Fergus McDuck',
     price: 43.21,
-    quantity: 33,
+    quantity: 330,
     description: '',
 
     helpfulness: 3
@@ -210,7 +210,7 @@ const products = [
   {
     name: 'Downy McDuck',
     price: 21.21,
-    quantity: 55,
+    quantity: 550,
     description: '',
 
     helpfulness: 2
@@ -218,7 +218,7 @@ const products = [
   {
     name: 'Bankjob Beagle',
     price: 2.22,
-    quantity: 2,
+    quantity: 20,
     description: '',
 
     helpfulness: 4
@@ -226,7 +226,7 @@ const products = [
   {
     name: 'Babyface Beagle',
     price: 0.89,
-    quantity: 33,
+    quantity: 330,
     description: '',
 
     helpfulness: 1
@@ -234,7 +234,7 @@ const products = [
   {
     name: 'Bugle Beagle',
     price: 5.65,
-    quantity: 77,
+    quantity: 770,
     description: '',
 
     helpfulness: 3
@@ -242,7 +242,7 @@ const products = [
   {
     name: 'Admiral Grimitz',
     price: 99.99,
-    quantity: 43,
+    quantity: 430,
     description: '',
 
     helpfulness: 1
@@ -250,7 +250,7 @@ const products = [
   {
     name: 'Poe',
     price: 11.11,
-    quantity: 33,
+    quantity: 330,
     description: '',
 
     helpfulness: 2
@@ -258,7 +258,7 @@ const products = [
   {
     name: 'Fenton Crackshell',
     price: 98.78,
-    quantity: 13,
+    quantity: 130,
     description: '',
 
     helpfulness: 5
@@ -298,7 +298,7 @@ const products = [
   {
     name: 'MMa Crackshell',
     price: 43.43,
-    quantity: 11,
+    quantity: 110,
     description: '',
 
     helpfulness: 2
@@ -306,7 +306,7 @@ const products = [
   {
     name: 'MMa Cabrera',
     price: 22.22,
-    quantity: 0,
+    quantity: 100,
     description: '',
 
     helpfulness: 5
@@ -322,7 +322,7 @@ const products = [
   {
     name: 'Gene the Genie',
     price: 45.45,
-    quantity: 22,
+    quantity: 220,
     description: '',
 
     helpfulness: 3
@@ -330,7 +330,7 @@ const products = [
   {
     name: 'Phantom Blot',
     price: 444.44,
-    quantity: 33,
+    quantity: 35,
     description: '',
     imageUrl:
       'https://images.homedepot-static.com/productImages/40421d7b-1fc2-422a-9caf-5d2fe835d743/svn/amscan-seasonal-decorations-390466-64_1000.jpg',
@@ -339,7 +339,7 @@ const products = [
   {
     name: 'Della Duck',
     price: 2121.21,
-    quantity: 11,
+    quantity: 110,
     description: '',
     imageUrl: 'https://www.mastgeneralstore.com/prodimages/54042-DEFAULT-l.jpg',
     helpfulness: 2
@@ -347,7 +347,7 @@ const products = [
   {
     name: 'Bradford Buzzard',
     price: 32.32,
-    quantity: 33,
+    quantity: 330,
     description: '',
     imageUrl:
       'https://cdn.shopify.com/s/files/1/0506/3177/products/RUD1B_L.jpg?v=1502728398',
@@ -356,7 +356,7 @@ const products = [
   {
     name: 'Lena De Spell',
     price: 32.32,
-    quantity: 22,
+    quantity: 220,
     description: '',
     imageUrl:
       'https://cdn.shopify.com/s/files/1/2117/2515/products/SouthCarolinaStateParks_ADI01881_Mermaid_2048x.jpg?v=1574887748',
@@ -365,7 +365,7 @@ const products = [
   {
     name: 'Bradford Buzz',
     price: 32.32,
-    quantity: 44,
+    quantity: 440,
     description: '',
     imageUrl:
       'https://shop.hrc.org/media/catalog/product/cache/b96c8ebdd70d2c86125e47f452c01479/h/r/hrc13388.jpg',
@@ -508,7 +508,7 @@ const products = [
   {
     name: 'Darkwing Duck',
     price: 32.32,
-    quantity: 44,
+    quantity: 440,
     description: '',
     imageUrl:
       'https://cdn.shopify.com/s/files/1/1175/4528/products/rubber-duck-newborn-photo.jpg?v=1561450188',
@@ -517,7 +517,7 @@ const products = [
   {
     name: 'Steelbeak',
     price: 32.32,
-    quantity: 55,
+    quantity: 550,
     description: '',
     imageUrl:
       'https://images-na.ssl-images-amazon.com/images/I/71LgxJzwFKL._SL1500_.jpg',
@@ -526,7 +526,7 @@ const products = [
   {
     name: 'Daisy Duck',
     price: 32.32,
-    quantity: 6,
+    quantity: 60,
     description: '',
     imageUrl:
       'https://cdn11.bigcommerce.com/s-jnapaiw/images/stencil/1280x1280/products/2945/4049/Sunny_duck__52036.1400093435.jpg?c=2',
