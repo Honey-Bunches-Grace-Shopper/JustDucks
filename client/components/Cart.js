@@ -3,24 +3,24 @@ import {connect} from 'react-redux'
 import {fetchCart, changeQuantity, removeItem} from '../store/cart'
 import OneCartEntry from './OneCartEntry'
 
+const defaultState = {
+  firstName: '',
+  lastName: '',
+  streetAddress: '',
+  city: '',
+  zipCode: '',
+  name: '',
+  ccNumber: '',
+  ssid: '',
+  cardType: '',
+  billingZip: '',
+  experation: ''
+}
+
 class Cart extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      quantity: '',
-      id: '',
-      firstName: '',
-      lastName: '',
-      streetAddress: '',
-      city: '',
-      zipCode: '',
-      name: '',
-      ccNumber: '',
-      ssid: '',
-      cardType: 'Discover',
-      billingZip: '',
-      experation: ''
-    }
+    this.state = defaultState
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -32,30 +32,23 @@ class Cart extends React.Component {
   handleSubmit(evt) {
     evt.preventDefault()
     this.props.submitCart()
-    this.setState({quantity: 0, id: ''})
+    this.setState(defaultState)
+    //submitting cart must also turn the orders in the cart to "submitted"
   }
 
   handleChange(evt) {
-    console.log(evt.target)
     this.setState({[evt.target.name]: evt.target.value})
     console.log(this.state)
   }
 
   render() {
-    const cart = localStorage.getItem(cart) || this.props.cart || []
+    const cart = this.props.cart || []
     return (
       <div>
         <h1>Cart:</h1>
         <div className="cart-items">
           {cart.map(cartEntry => (
-            <OneCartEntry
-              cart={this.state}
-              removeItem={this.props.removeItem}
-              cartEntry={cartEntry}
-              key={cartEntry.id}
-              id={cartEntry.id}
-              changeQuantity={this.props.changeQuantity}
-            />
+            <OneCartEntry cartEntry={cartEntry} key={cartEntry.id} />
           ))}
         </div>
         <div className="cart-total">
