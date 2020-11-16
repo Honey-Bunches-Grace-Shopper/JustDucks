@@ -1,4 +1,5 @@
 import axios from 'axios'
+import UserForm from '../components/User-Form'
 import history from '../history'
 
 /**
@@ -52,7 +53,6 @@ export const auth = (email, password, method) => async dispatch => {
 export const updateUserProfile = userInfo => async dispatch => {
   try {
     const {data} = await axios.put('/auth/me', userInfo)
-    console.log(data)
     dispatch(updateUser(data || ''))
   } catch (err) {
     console.error('Error updating userProfile', err)

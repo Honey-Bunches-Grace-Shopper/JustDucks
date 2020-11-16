@@ -6,7 +6,7 @@ import AllProducts from './AllProducts'
 /**
  * COMPONENT
  */
-export const UserHome = props => {
+export const DisconnectedUserHome = props => {
   const {email} = props
 
   return (
@@ -26,7 +26,8 @@ const mapState = state => {
   }
 }
 
-export default connect(mapState)(UserHome)
+const UserHome = connect(mapState)(DisconnectedUserHome)
+export default UserHome
 
 /**
  * PROP TYPES

@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {fetchCart, changeQuantity, removeItem, submitCart} from '../store/cart'
 import OneCartEntry from './OneCartEntry'
 
+
 const defaultState = {
   firstName: '',
   lastName: '',
@@ -175,4 +176,6 @@ const mapState = state => ({
   cart: state.cart
 })
 
-export default connect(mapState, mapDispatch)(Cart)
+const Cart = connect(mapState, mapDispatch)(DisconnectedCart)
+
+export default Cart
