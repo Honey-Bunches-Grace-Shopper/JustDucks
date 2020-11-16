@@ -64,7 +64,7 @@ export class SingleProduct extends React.Component {
           handleChange={this.handleChange}
           state={this.state}
         />
-        <button id="deleteDuck" onClick={this.handleDelete}>
+        <button type="button" id="deleteDuck" onClick={this.handleDelete}>
           Delete Duck
         </button>
       </div>

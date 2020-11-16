@@ -1,7 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import UpdateUser from './UpdateUser'
+import UserForm from './User-Form'
 import {me, updateUserProfile} from '../store/user'
+import {Link} from 'react-router-dom'
 
 class User extends React.Component {
   constructor(props) {
@@ -13,51 +14,55 @@ class User extends React.Component {
   }
 
   render() {
-    const {singleUser, updateUser} = this.props
+    const {singleUser, isAdmin, updateUser} = this.props || {}
     const {
       firstName,
       lastName,
       email,
-      address,
-      paymentInfo,
-      isAdmin
+      streetAddress,
+      city,
+      zipCode,
+      paymentInfo
     } = singleUser
 
     return (
-      <div id="userProfile">
-        <h2>User Profile</h2>
-        <h3>
-          Welcome back, {firstName} {lastName}
-        </h3>
-        <ul id="profileDetail">
-          <li>
-            Name: {firstName} {lastName}
-          </li>
-          <li>Email Address: {email}</li>
-          <li>Default Shipping Address: {address}</li>
-          <li>Payment Info: {paymentInfo}</li>
-        </ul>
+      <div className="loggedInUser">
+        <div id="userProfile">
+          <h2>User Profile</h2>
+          <h3>
+            Welcome back, {firstName} {lastName}
+          </h3>
+          <ul id="profileDetail">
+            <li>
+              <b>Name:</b> {firstName} {lastName}
+            </li>
+            <li>
+              <b>Email Address:</b> {email}
+            </li>
+            <li>
+              <b>Default Shipping Address:</b> <br />
+              <span>Street: {streetAddress}</span> <br />{' '}
+              <span>City: {city}</span> <br />
+              <span>Zip Code: {zipCode}</span>
+            </li>
+            <li>
+              <b>Payment Info:</b> {paymentInfo}
+            </li>
+          </ul>
+        </div>
         <div>
           {/* //*add updateuser function */}
-          <UpdateUser user={singleUser} handleUpdate={updateUser} />
+          <UserForm user={singleUser} handleUpdate={updateUser} />
         </div>
-        {isAdmin ? (
-          <div>
-            Admin Settings
-            <button type="button" onClick={() => {}}>
-              Set as Admin
-            </button>
-          </div>
-        ) : (
-          ''
-        )}
+        {isAdmin && <Link to="/users">View All Users</Link>}
       </div>
     )
   }
 }
 
 const mapState = state => ({
-  singleUser: state.user
+  singleUser: state.user,
+  isAdmin: state.user.admin
 })
 
 const mapDispatch = dispatch => ({
