@@ -24,15 +24,13 @@ class OneCartEntry extends React.Component {
   }
 
   handleChange(evt) {
-    console.log(this.state)
     this.setState({[evt.target.name]: evt.target.value})
-    // this.setState({id: evt.target.name})
   }
 
   async handleSubmit(evt) {
     evt.preventDefault()
-    this.props.changeQuantity(this.state.quantity, this.state.id)
-    this.setState(defaultState)
+    this.props.changeQuantity(this.state.numberOfItems, this.state.orderId)
+    await this.props.getCart()
   }
 
   async handleDelete(event) {
@@ -51,8 +49,8 @@ class OneCartEntry extends React.Component {
         <img width="100px" src={product.imageUrl || ''} />
         <div>
           <div>{product.name}</div>
-          {/* <div>Quantity: {cartEntry.numberOfItems}</div> */}
           <div>Price per Item: ${product.price}</div>
+          <div>Current Quantity: {itemCount}</div>
         </div>
         <div>
           <form onSubmit={this.handleSubmit}>

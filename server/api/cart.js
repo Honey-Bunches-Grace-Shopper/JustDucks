@@ -76,17 +76,12 @@ router.get('/:orderId', async (req, res, next) => {
 router.patch('/:orderId', async (req, res, next) => {
   try {
     const {orderId} = req.params
-    await Order.update(
-      {
-        numberOfItems: req.body.quantity
-      },
-      {
-        where: {
-          id: orderId
-        }
-      }
-    )
-    res.sendStatus(204)
+    let order = await Order.findByPk(orderId)
+    console.log('ORDER BEFORE UPDATE --->', order)
+    console.log('REQ.BODY.QUANTITY --->', req.body.quantity)
+    await order.update({numberOfItems: req.body.quantity})
+    console.log('ORDER AFTER UPDATE --->', order)
+    res.json(order)
   } catch (err) {
     next(err)
   }

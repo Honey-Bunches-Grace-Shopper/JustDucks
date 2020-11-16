@@ -67,9 +67,9 @@ export const addCartProduct = (
 
 export const changeQuantity = (quantity, id) => async dispatch => {
   try {
+    console.log(quantity, id)
     const update = await axios.patch(`/api/cart/${id}`, {
-      quantity,
-      id
+      quantity
     })
     dispatch(changeQuant(quantity, id))
   } catch (err) {
