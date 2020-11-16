@@ -1,72 +1,38 @@
 import React from 'react'
-import {connect} from 'react-redux'
-import UpdateUser from './UpdateUser'
-import {} from '../store/user'
 
-class User extends React.Component {
+export class SingleUser extends React.Component {
   constructor(props) {
     super(props)
   }
 
-  componentDidMount() {
-    this.props.getSingleUser()
-  }
-
   render() {
-    console.log('user-->', user)
-    const {user} = this.props
-    const {
+    let {user} = this.props
+    let {
       id,
       firstName,
       lastName,
       email,
-      address,
-      paymentInfo,
-      isAdmin,
-      password
+      streetAddress,
+      city,
+      zipCode,
+      paymentInfo
     } = user
-
     return (
-      <div id="userProfile">
-        <h2>User Profile</h2>
-        <h3>
-          Welcome back, {firstName} {lastName}
-        </h3>
-        <ul id="profileDetail">
-          <li>
-            Name: {firstName} {lastName}
-          </li>
-          <li>Email Address: {email}</li>
-          <li>Default Shipping Address: {address}</li>
-          <li>Payment Info: {paymentInfo}</li>
-          <li>Password: {password}</li>
-        </ul>
+      <li>
         <div>
-          {/* //*add updateuser function */}
-          <UpdateUser userId={id} />
+          <h3>UserID: {id}</h3>
+          <h3>
+            UserName: {firstName} {lastName}
+          </h3>
+          <h3>
+            Default Shipping Address: {streetAddress}, {city}, {zipCode}
+          </h3>
+          <h3>Email Address: {email}</h3>
+          <h3>Payment Info:{paymentInfo}</h3>
         </div>
-        {isAdmin ? (
-          <div>
-            Admin Settings
-            <button type="button" onClick={() => {}}>
-              Set as Admin
-            </button>
-          </div>
-        ) : (
-          ''
-        )}
-      </div>
+      </li>
     )
   }
 }
 
-const mapState = state => ({
-  singleUser: state.user
-})
-
-const mapDispatch = dispatch => ({
-  getSingleUser: () => dispatch()
-})
-
-const SingleUser = connect(mapState, mapDispatch)(User)
 export default SingleUser

@@ -1,10 +1,12 @@
 import axios from 'axios'
+import UserForm from '../components/User-Form'
 import history from '../history'
 
 /**
  * ACTION TYPES
  */
 const GET_USER = 'GET_USER'
+const UPDATE_USER = 'UPDATE_USER'
 const REMOVE_USER = 'REMOVE_USER'
 
 /**
@@ -16,6 +18,7 @@ const defaultUser = {}
  * ACTION CREATORS
  */
 const getUser = user => ({type: GET_USER, user})
+const updateUser = userInfo => ({type: UPDATE_USER, userInfo})
 const removeUser = () => ({type: REMOVE_USER})
 
 /**
@@ -43,6 +46,16 @@ export const auth = (email, password, method) => async dispatch => {
     history.push('/home')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
+  }
+}
+
+//Update userProfile when logged in
+export const updateUserProfile = userInfo => async dispatch => {
+  try {
+    const {data} = await axios.put('/auth/me', userInfo)
+    dispatch(updateUser(data || ''))
+  } catch (err) {
+    console.error('Error updating userProfile', err)
   }
 }
 

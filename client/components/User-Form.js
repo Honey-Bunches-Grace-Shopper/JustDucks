@@ -1,14 +1,19 @@
 import React from 'react'
 
-class UpdateUser extends React.Component {
+class UserForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      name: '',
       email: '',
-      address: '',
+      streetAddress: '',
+      city: '',
+      zipCode: '',
       paymentInfo: '',
-      password: ''
+      ...this.props.user,
+      name:
+        (this.props.user.firstName || '') +
+        ' ' +
+        (this.props.user.lastName || '')
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -16,26 +21,24 @@ class UpdateUser extends React.Component {
 
   handleSubmit(evt) {
     evt.preventDefault()
-    const {name, email, address, paymentInfo, password} = this.state
-    const {userId} = this.props
-    //call update thunk function
-
+    this.props.handleUpdate(this.state)
     this.setState({
       name: '',
       email: '',
-      address: '',
-      paymentInfo: '',
-      password: ''
+      streetAddress: '',
+      city: '',
+      zipCode: '',
+      paymentInfo: ''
     })
   }
 
   handleChange(evt) {
-    this.setState({[evt.target.name]: e.target.value})
+    this.setState({[evt.target.name]: evt.target.value})
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form id="userForm" onSubmit={this.handleSubmit}>
         <h3>Edit User Details</h3>
         <label htmlFor="name">Name</label>
         <input
@@ -51,25 +54,32 @@ class UpdateUser extends React.Component {
           value={this.state.email}
           onChange={this.handleChange}
         />
-        <label htmlFor="address">Email</label>
+        <label htmlFor="streetAddress">Street Address</label>
         <input
           type="text"
-          name="address"
-          value={this.state.address}
+          name="streetAddress"
+          value={this.state.streetAddress}
           onChange={this.handleChange}
         />
-        <label htmlFor="paymentInfo">Email</label>
+        <label htmlFor="city">City</label>
+        <input
+          type="text"
+          name="city"
+          value={this.state.city}
+          onChange={this.handleChange}
+        />
+        <label htmlFor="zipCode">Zip Code</label>
+        <input
+          type="text"
+          name="zipCode"
+          value={this.state.zipCode}
+          onChange={this.handleChange}
+        />
+        <label htmlFor="paymentInfo">PaymentInfo</label>
         <input
           type="text"
           name="paymentInfo"
           value={this.state.paymentInfo}
-          onChange={this.handleChange}
-        />
-        <label htmlFor="password">Email</label>
-        <input
-          type="text"
-          name="password"
-          value={this.state.password}
           onChange={this.handleChange}
         />
         <button type="submit">Save Changes</button>
@@ -78,4 +88,4 @@ class UpdateUser extends React.Component {
   }
 }
 
-export default UpdateUser
+export default UserForm
