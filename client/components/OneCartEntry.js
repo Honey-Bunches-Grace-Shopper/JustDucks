@@ -4,8 +4,7 @@ import {connect} from 'react-redux'
 
 const defaultState = {
   numberOfItems: 0,
-  orderId: '',
-  itemId: ''
+  orderId: ''
 }
 
 class OneCartEntry extends React.Component {
@@ -20,8 +19,7 @@ class OneCartEntry extends React.Component {
   componentDidMount() {
     this.setState({
       numberOfItems: this.props.cartEntry.numberOfItems,
-      orderId: this.props.cartEntry.id,
-      itemId: this.props.cartEntry.products[0].id
+      orderId: this.props.cartEntry.id
     })
   }
 
@@ -43,7 +41,8 @@ class OneCartEntry extends React.Component {
   }
 
   render() {
-    let product = this.props.cartEntry.products[0] || {}
+    let item = this.props.cartEntry.products || {}
+    let product = item[0] || {}
     let itemCount = this.props.cartEntry.numberOfItems
     console.log(this.props.cartEntry)
     return (
