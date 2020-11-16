@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchCart, changeQuantity, removeItem} from '../store/cart'
+import {fetchCart, changeQuantity, removeItem, submitCart} from '../store/cart'
 import OneCartEntry from './OneCartEntry'
 
 const defaultState = {
@@ -21,7 +21,7 @@ class Cart extends React.Component {
   constructor(props) {
     super(props)
     this.state = defaultState
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleSubmit.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
@@ -29,16 +29,17 @@ class Cart extends React.Component {
     this.props.getCart()
   }
 
-  handleSubmit(evt) {
-    evt.preventDefault()
-    this.props.submitCart()
-    this.setState(defaultState)
-    //submitting cart must also turn the orders in the cart to "submitted"
+  handleChange(evt) {
+    this.setState({
+      [evt.target.name]: evt.target.value
+    })
   }
 
-  handleChange(evt) {
-    this.setState({[evt.target.name]: evt.target.value})
-    console.log(this.state)
+  handleSubmit(evt) {
+    evt.preventDefault()
+    // this.props.submitCart()
+    this.setState(defaultState)
+    //submitting cart must also turn the orders in the cart to "submitted"
   }
 
   render() {
@@ -166,8 +167,8 @@ class Cart extends React.Component {
 const mapDispatch = dispatch => ({
   getCart: () => dispatch(fetchCart()),
   removeItem: orderId => dispatch(removeItem(orderId)),
-  changeQuantity: (quantity, id) => dispatch(changeQuantity(quantity, id)),
-  submitCart: () => dispatch(submitCart())
+  changeQuantity: (quantity, id) => dispatch(changeQuantity(quantity, id))
+  // submitCart: () => dispatch(submitCart()),
 })
 
 const mapState = state => ({

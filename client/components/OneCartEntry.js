@@ -3,8 +3,8 @@ import {fetchCart, changeQuantity, removeItem} from '../store/cart'
 import {connect} from 'react-redux'
 
 const defaultState = {
-  quantity: 0,
-  id: ''
+  numberOfItems: 0,
+  orderId: ''
 }
 
 class OneCartEntry extends React.Component {
@@ -18,13 +18,14 @@ class OneCartEntry extends React.Component {
 
   componentDidMount() {
     this.setState({
-      quantity: this.props.cartEntry.numberOfItems,
-      id: this.props.cartEntry.id
+      numberOfItems: this.props.cartEntry.numberOfItems,
+      orderId: this.props.cartEntry.id
     })
   }
 
   handleChange(evt) {
-    this.setState({[evt.target.id]: evt.target.value})
+    console.log(this.state)
+    this.setState({[evt.target.name]: evt.target.value})
     // this.setState({id: evt.target.name})
   }
 
@@ -58,10 +59,10 @@ class OneCartEntry extends React.Component {
             <label htmlFor="quantity">Change Quantity:</label>
             <input
               type="number"
-              name="quantity"
+              name="numberOfItems"
               min="0"
               max={product.quantity}
-              value={this.state.quantity}
+              value={this.state.numberOfItems}
               onChange={this.handleChange}
             />
             <button>Submit Change</button>
