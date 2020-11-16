@@ -22,7 +22,7 @@ class User extends React.Component {
       streetAddress,
       city,
       zipCode,
-      paymentInfo
+      cardNumber
     } = singleUser
 
     return (
@@ -46,7 +46,7 @@ class User extends React.Component {
               <span>Zip Code: {zipCode}</span>
             </li>
             <li>
-              <b>Payment Info:</b> {paymentInfo}
+              <b>Card Number:</b> {cardNumber}
             </li>
           </ul>
         </div>
