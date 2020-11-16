@@ -14,7 +14,7 @@ class User extends React.Component {
   }
 
   render() {
-    const {singleUser, isAdmin, updateUser} = this.props || {}
+    const {singleUser, isAdmin, getSingleUser, updateUser} = this.props || {}
     const {
       firstName,
       lastName,
@@ -22,7 +22,7 @@ class User extends React.Component {
       streetAddress,
       city,
       zipCode,
-      paymentInfo
+      cardNumber
     } = singleUser
 
     return (
@@ -41,18 +41,22 @@ class User extends React.Component {
             </li>
             <li>
               <b>Default Shipping Address:</b> <br />
-              <span>Street: {streetAddress}</span> <br />{' '}
+              <span>Street: {streetAddress}</span> <br />
               <span>City: {city}</span> <br />
               <span>Zip Code: {zipCode}</span>
             </li>
             <li>
-              <b>Payment Info:</b> {paymentInfo}
+              <b>Card Number:</b> {cardNumber}
             </li>
           </ul>
         </div>
         <div>
           {/* //*add updateuser function */}
-          <UserForm user={singleUser} handleUpdate={updateUser} />
+          <UserForm
+            user={singleUser}
+            getUser={getSingleUser}
+            handleUpdate={updateUser}
+          />
         </div>
         {isAdmin && <Link to="/users">View All Users</Link>}
       </div>

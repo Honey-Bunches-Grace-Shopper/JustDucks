@@ -30,9 +30,10 @@ export const changeQuant = (quantity, id) => ({
   id
 })
 
-export const fetchCart = () => async dispatch => {
+export const fetchCart = userId => async dispatch => {
   try {
-    const {data} = await axios.get('/api/cart')
+    console.log('userId ---->', userId)
+    const {data} = await axios.get(`/api/cart/user/${userId}`)
     dispatch(setCart(data))
   } catch (err) {
     console.error('Error fetching cart: ', err)
@@ -67,7 +68,6 @@ export const addCartProduct = (
 
 export const changeQuantity = (quantity, id) => async dispatch => {
   try {
-    console.log(quantity, id)
     const update = await axios.patch(`/api/cart/${id}`, {
       quantity
     })

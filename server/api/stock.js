@@ -6,7 +6,6 @@ module.exports = router
 
 router.put('/:id', async (req, res, next) => {
   try {
-    console.log(req.body)
     const {id} = req.params
     const productInstance = await Product.findByPk(id)
     await productInstance.update(req.body)
