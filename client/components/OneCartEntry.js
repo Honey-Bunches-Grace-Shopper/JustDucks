@@ -4,7 +4,8 @@ import {connect} from 'react-redux'
 
 const defaultState = {
   numberOfItems: 0,
-  orderId: ''
+  orderId: '',
+  itemId: ''
 }
 
 class OneCartEntry extends React.Component {
@@ -19,7 +20,8 @@ class OneCartEntry extends React.Component {
   componentDidMount() {
     this.setState({
       numberOfItems: this.props.cartEntry.numberOfItems,
-      orderId: this.props.cartEntry.id
+      orderId: this.props.cartEntry.id,
+      itemId: this.props.cartEntry.products[0].id
     })
   }
 
@@ -34,8 +36,9 @@ class OneCartEntry extends React.Component {
   }
 
   async handleDelete(event) {
+    console.log(this.props)
     event.preventDefault()
-    await this.props.removeItem(this.props.id)
+    await this.props.removeItem(this.state.orderId)
     await this.props.getCart()
   }
 
@@ -43,7 +46,6 @@ class OneCartEntry extends React.Component {
     let product = this.props.cartEntry.products[0] || {}
     let itemCount = this.props.cartEntry.numberOfItems
     console.log(this.props.cartEntry)
-    let id = this.props.cartEntry.id
     return (
       <div>
         <img width="100px" src={product.imageUrl || ''} />
@@ -66,7 +68,8 @@ class OneCartEntry extends React.Component {
             <button>Submit Change</button>
           </form>
         </div>
-        <button onClick={() => this.props.removeItem(id)}>Remove Item</button>
+        {/* <button onClick={() => this.props.removeItem(id)}>Remove Item</button> */}
+        <button onClick={this.handleDelete}>Remove Item</button>
       </div>
     )
   }

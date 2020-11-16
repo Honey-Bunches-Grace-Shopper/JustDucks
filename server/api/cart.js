@@ -90,9 +90,9 @@ router.patch('/:orderId', async (req, res, next) => {
 router.delete('/:orderId', async (req, res, next) => {
   try {
     const {orderId} = req.params
-    const cartNumber = await Order.findByPk(orderId)
-    console.log('cart', cartNumber)
-    await cartNumber.destroy()
+    const cart = await Order.findByPk(orderId)
+    console.log(cart)
+    await cart.destroy()
     res.sendStatus(204)
   } catch (err) {
     next(err)
