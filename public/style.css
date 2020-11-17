@@ -1,5 +1,5 @@
 body {
-  font-family: sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 a {
@@ -10,15 +10,25 @@ label {
   display: block;
 }
 
-nav a {
+nav {
   display: flex;
   flex-direction: row;
-  margin: 1em;
+  justify-content: space-between;
+  padding: 10px;
+  color: white;
 }
 
-form div {
-  margin: 1em;
+form {
+  margin: 1rem;
   display: inline-block;
+}
+
+.navBar {
+  background-color: #72dcca;
+  font-size: 1rem;
+  height: 60px;
+  align-items: center;
+  font-weight: bold;
 }
 
 .allProducts {
@@ -58,4 +68,17 @@ form div {
 
 .adminControls #deleteDuck {
   color: red;
+}
+
+#title {
+  font-family: Arial, sans-serif;
+  font-size: 3.5rem;
+  text-align: center;
+  letter-spacing: -1px;
+  background-image: url('Just_Ducks.jpg');
+  background-size: 200px;
+  color: white;
+  display: block;
+  justify-content: center;
+  align-items: center;
 }
