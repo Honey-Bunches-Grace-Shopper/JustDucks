@@ -3,6 +3,20 @@ const {Product} = require('../db/models')
 const adminsOnly = require('../gateKeeper')
 module.exports = router
 
+/*
+CR Note:
+- Routes should follow RESTful pattern
+  For example: 
+  GET /users/:id --> returns a single user
+  GET /users --> returns a list of users
+  POST /users --> adds a new user
+- I would suggest instead of using "stock" to use "products"
+  GET /products/:id --> returns single product
+  PUT /products/:id --> updates a product
+  POST /products --> posts a single product
+  DELETE /products/:id --> deletes a product 
+
+ */
 //PUT     /api/stock/:productId
 router.put('/:id', adminsOnly, async (req, res, next) => {
   try {

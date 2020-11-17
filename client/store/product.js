@@ -31,6 +31,7 @@ export const fetchProducts = () => async dispatch => {
   }
 }
 
+//CR Note: below thunks should dispatch action creators
 export const updateOneProduct = async (id, productInfo) => {
   try {
     await axios.put(`/api/stock/${id}`, productInfo)

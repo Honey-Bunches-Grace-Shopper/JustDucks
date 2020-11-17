@@ -25,7 +25,11 @@ class Cart extends React.Component {
     this.handleChange = this.handleSubmit.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
+  /*CR NOTES
+  - Not necessary to await this.props.getUser, this.props.getCart because they don't return promises.
+  - The above also applies to other React components that do the same! 
 
+*/
   async componentDidMount() {
     await this.props.getUser()
     await this.setState({

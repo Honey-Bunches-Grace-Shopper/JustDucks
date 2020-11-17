@@ -1,5 +1,7 @@
 import React from 'react'
 
+//CR Note: Add front end validations for input fields
+
 const ProductForm = props => {
   const handleChange = props.handleChange
   const handleSubmit = props.handleSubmit

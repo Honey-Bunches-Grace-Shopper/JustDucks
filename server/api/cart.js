@@ -2,6 +2,10 @@ const router = require('express').Router()
 const {Order, Product, PastOrder} = require('../db/models')
 module.exports = router
 
+/*
+CR Note: 
+- It's best practice to keep the main branch clean of console.logs  
+*/
 // GET /api/cart/user/userId
 router.get('/user/:userId', async (req, res, next) => {
   try {
