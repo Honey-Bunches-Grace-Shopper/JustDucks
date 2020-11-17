@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 import {fetchCart, changeQuantity, removeItem, submitCart} from '../store/cart'
 import OneCartEntry from './OneCartEntry'
 import {me} from '../store/user'
+import {setGuestCart} from '../store/guestCart'
+import GuestCartEntry from './GuestCartEntry'
 
 const defaultState = {
   userId: '',
@@ -29,19 +31,12 @@ class Cart extends React.Component {
   async componentDidMount() {
     await this.props.getUser()
     await this.setState({
-      userId: this.props.user.id,
-      firstName: this.props.user.firstName,
-      lastName: this.props.user.lastName,
-      streetAddress: this.props.user.streetAddress,
-      city: this.props.user.city,
-      zipCode: this.props.user.zipCode,
-      ccNumber: this.props.user.ccNumber,
-      ssid: this.props.user.ssid,
-      cardType: this.props.user.cardType,
-      billingZip: this.props.user.billingZip,
-      experation: this.props.user.experation
+      userId: this.props.user.id || ''
     })
-    await this.props.getCart(this.state.userId)
+    if (this.state.userId) {
+      this.props.getCart(this.state.userId)
+    }
+    this.props.setGuestCart()
   }
 
   handleChange(evt) {
@@ -52,19 +47,17 @@ class Cart extends React.Component {
 
   handleSubmit(evt) {
     evt.preventDefault()
-    // this.props.submitCart()
     this.setState(defaultState)
-    //submitting cart must also turn the orders in the cart to "submitted"
   }
 
   render() {
-    // console.log('userId in render', this.props.user.id)
-    const cart = this.props.cart || []
-    return (
+    const userCart = this.props.cart || []
+    const guestyCart = this.props.guestCart || []
+    console.log(userCart)
+    let loggedInCart = (
       <div>
-        <h1>Cart:</h1>
         <div className="cart-items">
-          {cart.map(cartEntry => (
+          {userCart.map(cartEntry => (
             <OneCartEntry cartEntry={cartEntry} key={cartEntry.id} />
           ))}
         </div>
@@ -72,6 +65,28 @@ class Cart extends React.Component {
           <h4>Total</h4>
           <div>Price:</div>
         </div>
+      </div>
+    )
+
+    let guestCart = (
+      <div>
+        <div>
+          {guestyCart.map(product => (
+            <GuestCartEntry product={product} key={product.name} />
+          ))}
+        </div>
+        <div className="cart-total">
+          <h4>Total</h4>
+          <div>Price:</div>
+        </div>
+      </div>
+    )
+
+    return (
+      <div>
+        <h1>Cart:</h1>
+        {this.props.user.email && loggedInCart}
+        {!this.props.user.email && guestCart}
         <div className="checkout">
           <div>Log In Above or Checkout as Guest:</div>
           <div className="shipping">
@@ -121,14 +136,6 @@ class Cart extends React.Component {
               </div>
               <div>
                 <h4>INPUT CREDIT CARD</h4>
-                {/* <label htmlFor="name">Name:</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  onChange={this.handleChange}
-                  value={this.state.name}
-                /> */}
                 <label htmlFor="ccNumber">Credit Card Number:</label>
                 <input
                   type="password"
@@ -184,12 +191,13 @@ const mapDispatch = dispatch => ({
   getUser: () => dispatch(me()),
   getCart: userId => dispatch(fetchCart(userId)),
   removeItem: orderId => dispatch(removeItem(orderId)),
-  changeQuantity: (quantity, id) => dispatch(changeQuantity(quantity, id))
-  // submitCart: () => dispatch(submitCart()),
+  changeQuantity: (quantity, id) => dispatch(changeQuantity(quantity, id)),
+  setGuestCart: () => dispatch(setGuestCart())
 })
 
 const mapState = state => ({
   cart: state.cart,
+  guestCart: state.guestCart,
   user: state.user
 })
 

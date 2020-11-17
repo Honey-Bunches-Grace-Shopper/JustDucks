@@ -37,8 +37,4 @@ const Product = db.define('product', {
   }
 })
 
-//   Product.prototype.getPrice = function(price){
-//       return price/100
-//   }
-
 module.exports = Product

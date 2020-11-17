@@ -32,7 +32,6 @@ export const changeQuant = (quantity, id) => ({
 
 export const fetchCart = userId => async dispatch => {
   try {
-    console.log('userId ---->', userId)
     const {data} = await axios.get(`/api/cart/user/${userId}`)
     dispatch(setCart(data))
   } catch (err) {
@@ -43,7 +42,7 @@ export const fetchCart = userId => async dispatch => {
 export const removeItem = orderId => async dispatch => {
   try {
     await axios.delete(`/api/cart/${orderId}`)
-    dispatch(removeItem(orderId))
+    dispatch(removeProduct(orderId))
   } catch (err) {
     console.error('Error deleting item from cart', err)
   }
@@ -60,7 +59,6 @@ export const addCartProduct = (
       numberOfItems,
       userId
     })
-    dispatch(addProduct(data))
   } catch (err) {
     console.error('Error adding item to cart', err)
   }
