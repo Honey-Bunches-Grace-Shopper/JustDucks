@@ -37,7 +37,7 @@ class OneCartEntry extends React.Component {
   async handleDelete(event) {
     event.preventDefault()
     await this.props.removeItem(this.state.orderId)
-    await this.props.getCart()
+    await this.props.getCart(this.props.user.id)
   }
 
   render() {

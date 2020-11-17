@@ -41,7 +41,6 @@ router.post('/', async (req, res, next) => {
     } else {
       const newOrder = await Order.create(req.body)
       const product = req.body.selectedProduct
-      await newOrder.addProduct(product.id)
       res.json(newOrder)
     }
   } catch (err) {
