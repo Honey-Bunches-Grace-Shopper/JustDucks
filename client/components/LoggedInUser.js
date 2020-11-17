@@ -32,7 +32,7 @@ class User extends React.Component {
           <h3>
             Welcome back, {firstName} {lastName}
           </h3>
-          <ul id="profileDetail">
+          <div id="profileDetail">
             <li>
               <b>Name:</b> {firstName} {lastName}
             </li>
@@ -41,14 +41,16 @@ class User extends React.Component {
             </li>
             <li>
               <b>Default Shipping Address:</b> <br />
-              <span>Street: {streetAddress}</span> <br />
-              <span>City: {city}</span> <br />
-              <span>Zip Code: {zipCode}</span>
+              <div id="detailedUserAddress">
+                <span>Street: {streetAddress}</span> <br />
+                <span>City: {city}</span> <br />
+                <span>Zip Code: {zipCode}</span>
+              </div>
             </li>
             <li>
               <b>Card Number:</b> {cardNumber}
             </li>
-          </ul>
+          </div>
         </div>
         <div>
           {/* //*add updateuser function */}

@@ -18,11 +18,11 @@ class Users extends React.Component {
     return (
       <div>
         <h1 className="center">All Users</h1>
-        <ol>
+        <ul>
           {users.map(user => (
             <SingleUser user={user} key={user.id} isAdmin={isAdmin} />
           ))}
-        </ol>
+        </ul>
       </div>
     )
   }
