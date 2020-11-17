@@ -4,7 +4,6 @@ import {setGuestCart} from '../store/guestCart'
 
 const defaultState = {
   cartQuantity: 0
-  // orderId: ''
 }
 
 class GuestCartEntry extends React.Component {
@@ -19,7 +18,6 @@ class GuestCartEntry extends React.Component {
   componentDidMount() {
     this.setState({
       cartQuantity: this.props.product.cartQuantity
-      // orderId: this.props.cartEntry.id
     })
   }
 
@@ -32,42 +30,40 @@ class GuestCartEntry extends React.Component {
     let existing = JSON.parse(
       localStorage.getItem(`${this.props.product.name}`)
     )
-    let oldQuant = Number(existing.cartQuantity) || 0
-    let newQuant = Number(oldQuant) + Number(this.state.cartQuantity)
+    let newQuant = Number(this.state.cartQuantity)
     existing.cartQuantity = newQuant
     this.setState({cartQuantity: newQuant})
-    localStorage.setItem(`${this.state.name}`, JSON.stringify(existing))
-    this.props.getGuestCart()
+    localStorage.setItem(`${this.props.product.name}`, JSON.stringify(existing))
+    this.props.setGuestCart()
   }
 
   async handleDelete(event) {
     event.preventDefault()
     await localStorage.removeItem(`${this.props.product.name}`)
-    this.props.getGuestCart()
+    this.props.setGuestCart()
   }
 
   render() {
-    let item = this.props.cartEntry.products || {}
-    let product = item[0] || {}
-    let itemCount = this.props.cartEntry.numberOfItems
-    console.log(this.props.cartEntry)
+    let item = this.props.product
+    console.log(item)
+    let itemCount = this.props.product.cartQuantity
     return (
       <div>
-        <img width="100px" src={product.imageUrl || ''} />
+        <img width="100px" src={item.imageUrl || ''} />
         <div>
-          <div>{product.name}</div>
-          <div>Price per Item: ${product.price}</div>
+          <div>{item.name}</div>
+          <div>Price per Item: ${item.price}</div>
           <div>Current Quantity: {itemCount}</div>
         </div>
         <div>
           <form onSubmit={this.handleSubmit}>
-            <label htmlFor="quantity">Change Quantity:</label>
+            <label htmlFor="cartQuantity">Change Quantity:</label>
             <input
               type="number"
-              name="numberOfItems"
+              name="cartQuantity"
               min="0"
-              max={product.quantity}
-              value={this.state.numberOfItems}
+              max={item.quantity}
+              value={this.state.cartQuantity}
               onChange={this.handleChange}
             />
             <button>Submit Change</button>
@@ -81,7 +77,7 @@ class GuestCartEntry extends React.Component {
 }
 
 const mapDispatch = dispatch => ({
-  getGuestCart: () => dispatch(setGuestCart())
+  setGuestCart: () => dispatch(setGuestCart())
 })
 
 export default connect(null, mapDispatch)(GuestCartEntry)

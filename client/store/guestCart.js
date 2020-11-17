@@ -17,10 +17,23 @@ export const initialCart = cart => ({
 
 //thunk
 
-export const setGuestCart = () => {
-  return dispatch => {
-    const data = JSON.parse()
-    dispatch(initialCart(data.results))
+function allStorage() {
+  var values = [],
+    keys = Object.keys(localStorage),
+    i = keys.length
+
+  while (i--) {
+    values.push(JSON.parse(localStorage.getItem(keys[i])))
+  }
+  return values
+}
+
+export const setGuestCart = () => dispatch => {
+  try {
+    const storageData = allStorage()
+    dispatch(initialCart(storageData))
+  } catch (err) {
+    console.log('trouble with local storage', err)
   }
 }
 

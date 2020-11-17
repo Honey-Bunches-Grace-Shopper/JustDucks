@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 import {fetchCart, changeQuantity, removeItem, submitCart} from '../store/cart'
 import OneCartEntry from './OneCartEntry'
 import {me} from '../store/user'
+import {setGuestCart} from '../store/guestCart'
+import GuestCartEntry from './GuestCartEntry'
 
 const defaultState = {
   userId: '',
@@ -41,9 +43,10 @@ class Cart extends React.Component {
       billingZip: this.props.user.billingZip,
       experation: this.props.user.experation
     })
-    this.state.userId
-      ? await this.props.getCart(this.state.userId)
-      : await this.props.getGuestCart()
+    if (this.state.userId) {
+      this.props.getCart(this.state.userId)
+    }
+    this.props.setGuestCart()
   }
 
   handleChange(evt) {
@@ -60,14 +63,12 @@ class Cart extends React.Component {
   }
 
   render() {
-    const cart = this.props.user
-      ? this.props.cart || []
-      : this.props.guestCart || []
-
+    const userCart = this.props.cart || []
+    const guestyCart = this.props.guestCart || []
     let loggedInCart = (
       <div>
         <div className="cart-items">
-          {cart.map(cartEntry => (
+          {userCart.map(cartEntry => (
             <OneCartEntry cartEntry={cartEntry} key={cartEntry.id} />
           ))}
         </div>
@@ -80,15 +81,24 @@ class Cart extends React.Component {
 
     let guestCart = (
       <div>
-        <div className="cart-items" />
+        <div>
+          {guestyCart.map(product => (
+            <GuestCartEntry product={product} key={product.id} />
+          ))}
+        </div>
+        <div className="cart-total">
+          <h4>Total</h4>
+          <div>Price:</div>
+        </div>
       </div>
     )
 
     return (
       <div>
         <h1>Cart:</h1>
-        {this.props.user && loggedInCart}
-        {!this.props.user && guestCart}
+        {console.log(this.props.user)}
+        {this.props.user.email && loggedInCart}
+        {!this.props.user.email && guestCart}
         <div className="checkout">
           <div>Log In Above or Checkout as Guest:</div>
           <div className="shipping">
@@ -201,12 +211,14 @@ const mapDispatch = dispatch => ({
   getUser: () => dispatch(me()),
   getCart: userId => dispatch(fetchCart(userId)),
   removeItem: orderId => dispatch(removeItem(orderId)),
-  changeQuantity: (quantity, id) => dispatch(changeQuantity(quantity, id))
+  changeQuantity: (quantity, id) => dispatch(changeQuantity(quantity, id)),
+  setGuestCart: () => dispatch(setGuestCart())
   // submitCart: () => dispatch(submitCart()),
 })
 
 const mapState = state => ({
   cart: state.cart,
+  guestCart: state.guestCart,
   user: state.user
 })
 
