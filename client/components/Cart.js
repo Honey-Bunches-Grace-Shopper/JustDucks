@@ -41,7 +41,9 @@ class Cart extends React.Component {
       billingZip: this.props.user.billingZip,
       experation: this.props.user.experation
     })
-    await this.props.getCart(this.state.userId)
+    this.state.userId
+      ? await this.props.getCart(this.state.userId)
+      : await this.props.getGuestCart()
   }
 
   handleChange(evt) {
@@ -58,11 +60,12 @@ class Cart extends React.Component {
   }
 
   render() {
-    // console.log('userId in render', this.props.user.id)
-    const cart = this.props.cart || []
-    return (
+    const cart = this.props.user
+      ? this.props.cart || []
+      : this.props.guestCart || []
+
+    let loggedInCart = (
       <div>
-        <h1>Cart:</h1>
         <div className="cart-items">
           {cart.map(cartEntry => (
             <OneCartEntry cartEntry={cartEntry} key={cartEntry.id} />
@@ -72,6 +75,20 @@ class Cart extends React.Component {
           <h4>Total</h4>
           <div>Price:</div>
         </div>
+      </div>
+    )
+
+    let guestCart = (
+      <div>
+        <div className="cart-items" />
+      </div>
+    )
+
+    return (
+      <div>
+        <h1>Cart:</h1>
+        {this.props.user && loggedInCart}
+        {!this.props.user && guestCart}
         <div className="checkout">
           <div>Log In Above or Checkout as Guest:</div>
           <div className="shipping">

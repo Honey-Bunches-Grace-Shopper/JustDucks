@@ -19,7 +19,7 @@ export const initialCart = cart => ({
 
 export const setGuestCart = () => {
   return dispatch => {
-    const data = JSON.parse(localStorage.guestCart)
+    const data = JSON.parse()
     dispatch(initialCart(data.results))
   }
 }
