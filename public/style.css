@@ -1,5 +1,7 @@
 body {
   font-family: Arial, sans-serif;
+  background-color: #10acd3d5;
+  color: white;
 }
 
 a {
@@ -12,23 +14,75 @@ label {
 
 nav {
   display: flex;
+  flex-basis: 100%;
   flex-direction: row;
-  justify-content: space-between;
-  padding: 10px;
+  justify-content: flex-start;
+  align-items: baseline;
+  padding-top: 20px;
+}
+
+div {
+  margin: 1rem;
+}
+
+nav > a {
+  margin: 0 12px;
+}
+
+.home-link {
+  margin-right: auto;
+}
+
+.login-link {
+  margin-left: auto;
+}
+
+a {
+  text-decoration: none;
   color: white;
 }
 
 form {
+  display: block;
   margin: 1rem;
+}
+
+form label {
+  font-weight: bold;
+}
+form input {
+  margin-bottom: 0.5rem;
+}
+
+button {
   display: inline-block;
+  padding: 0.3rem 1.2rem;
+  margin: 0 0.3em 0.3em 0;
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
+  background-color: #2172d4;
+  text-align: center;
+  transition: all 0.2s;
+}
+
+button:hover {
+  background-color: #87ecf7;
 }
 
 .navBar {
-  background-color: #72dcca;
+  flex-basis: auto;
+  background-color: #2172d4;
   font-size: 1rem;
   height: 60px;
-  align-items: center;
   font-weight: bold;
+  text-decoration: none;
+}
+
+.authForm {
+  position: relative;
+  left: 1rem;
+  right: 1rem;
 }
 
 .allProducts {
@@ -47,7 +101,10 @@ form {
 }
 
 .allProducts li {
-  flex-basis: 40%;
+  display: flex;
+  flex-flow: row;
+  align-items: space-around;
+  flex-basis: 400px;
   border-width: 5px;
   border-style: solid;
   margin: 10px;
@@ -57,28 +114,59 @@ form {
 
 .adminControls {
   flex-basis: 40%;
-  background-color: cornflowerblue;
+  color: white;
   text-align: end;
 }
 
 .adminControls button {
   margin: 5px;
-  font-weight: 400;
 }
 
 .adminControls #deleteDuck {
-  color: red;
+  color: white;
+  background-color: red;
+}
+
+.changeStock {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+}
+
+.singleUser {
+  display: flex;
+  justify-content: flex-start;
 }
 
 #title {
   font-family: Arial, sans-serif;
-  font-size: 3.5rem;
+  font-size: 3rem;
   text-align: center;
   letter-spacing: -1px;
-  background-image: url('Just_Ducks.jpg');
-  background-size: 200px;
+  background: url(Just_Ducks.jpg) top left / 100% 150% no-repeat;
+  background-position: 40%;
+  padding: 100px;
   color: white;
   display: block;
   justify-content: center;
   align-items: center;
+  margin: 0;
+}
+
+#deleteDuck {
+  position: relative;
+  right: 15px;
+}
+
+#detailedUserAddress {
+  position: relative;
+  left: 11rem;
+}
+
+#userForm {
+  position: relative;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-startS;
 }
