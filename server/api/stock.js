@@ -1,10 +1,10 @@
 const router = require('express').Router()
 const {Product} = require('../db/models')
+const adminsOnly = require('../gateKeeper')
 module.exports = router
 
 //PUT     /api/stock/:productId
-
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', adminsOnly, async (req, res, next) => {
   try {
     const {id} = req.params
     const productInstance = await Product.findByPk(id)
@@ -16,7 +16,7 @@ router.put('/:id', async (req, res, next) => {
 })
 
 //DELETE    /api/stock/:productId
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', adminsOnly, async (req, res, next) => {
   try {
     await Product.destroy({
       where: {
@@ -30,7 +30,7 @@ router.delete('/:id', async (req, res, next) => {
 })
 
 //POST    /api/stock/
-router.post('/', async (req, res, next) => {
+router.post('/', adminsOnly, async (req, res, next) => {
   try {
     let newProduct = await Product.create(req.body)
     res.send(newProduct)
