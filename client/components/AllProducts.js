@@ -64,7 +64,7 @@ class Products extends React.Component {
             {products.map(product => (
               <SingleProduct
                 product={product}
-                key={product.id}
+                key={product.name}
                 id={product.id}
                 isAdmin={isAdmin}
                 updateProduct={this.props.updateProduct}

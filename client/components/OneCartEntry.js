@@ -27,14 +27,14 @@ class OneCartEntry extends React.Component {
     this.setState({[evt.target.name]: evt.target.value})
   }
 
-  async handleSubmit(evt) {
+  handleSubmit(evt) {
     evt.preventDefault()
+    console.log(this.props.user.id)
     this.props.changeQuantity(this.state.numberOfItems, this.state.orderId)
-    await this.props.getCart()
+    this.props.getCart(this.props.user.id)
   }
 
   async handleDelete(event) {
-    console.log(this.props)
     event.preventDefault()
     await this.props.removeItem(this.state.orderId)
     await this.props.getCart()
@@ -44,7 +44,6 @@ class OneCartEntry extends React.Component {
     let item = this.props.cartEntry.products || {}
     let product = item[0] || {}
     let itemCount = this.props.cartEntry.numberOfItems
-    console.log(this.props.cartEntry)
     return (
       <div>
         <img width="100px" src={product.imageUrl || ''} />
@@ -67,7 +66,6 @@ class OneCartEntry extends React.Component {
             <button>Submit Change</button>
           </form>
         </div>
-        {/* <button onClick={() => this.props.removeItem(id)}>Remove Item</button> */}
         <button onClick={this.handleDelete}>Remove Item</button>
       </div>
     )
@@ -75,9 +73,13 @@ class OneCartEntry extends React.Component {
 }
 
 const mapDispatch = dispatch => ({
-  getCart: () => dispatch(fetchCart()),
+  getCart: userId => dispatch(fetchCart(userId)),
   removeItem: orderId => dispatch(removeItem(orderId)),
   changeQuantity: (quantity, id) => dispatch(changeQuantity(quantity, id))
 })
 
-export default connect(null, mapDispatch)(OneCartEntry)
+const mapState = state => ({
+  user: state.user
+})
+
+export default connect(mapState, mapDispatch)(OneCartEntry)

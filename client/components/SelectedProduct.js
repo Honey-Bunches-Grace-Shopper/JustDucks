@@ -1,9 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
-// import product from '../store/product'
 import {fetchSelectedProduct} from '../store/singleProduct'
 import {addCartProduct} from '../store/cart'
-// import {getUser} from '../store/user'
 import ProductForm from './Product-Form'
 import AddToCartForm from './Add-To-Cart-Form'
 import {updateOneProduct} from '../store/product'
@@ -39,7 +37,7 @@ class Product extends React.Component {
       imageUrl: this.props.selectedProduct.imageUrl
     })
   }
-  //handleSubmit handles cart submissions (User)
+
   handleSubmit(evt) {
     evt.preventDefault()
     let loggedIn = this.props.userId
@@ -49,9 +47,7 @@ class Product extends React.Component {
         this.state.cartQuantity,
         this.props.userId
       )
-    } else {
-      // eslint-disable-next-line no-lonely-if
-      if (!localStorage.getItem(`${this.state.name}`)) {
+    } else if (!localStorage.getItem(`${this.state.name}`)) {
         localStorage.setItem(`${this.state.name}`, JSON.stringify(this.state))
       } else {
         let existing = JSON.parse(localStorage.getItem(`${this.state.name}`))
@@ -61,7 +57,6 @@ class Product extends React.Component {
         this.setState({cartQuantity: newQuant})
         localStorage.setItem(`${this.state.name}`, JSON.stringify(existing))
       }
-    }
   }
   //handleChange handles cart submissions && product updates through state (User && Admin)
   handleChange(evt) {
@@ -70,7 +65,6 @@ class Product extends React.Component {
 
   //handleProductUpdate handles product updates through state (Admin)
   async handleProductUpdate(evt) {
-    console.log('click')
     evt.preventDefault()
     try {
       await this.props.updateProduct(this.props.selectedProduct.id, {
@@ -108,7 +102,6 @@ class Product extends React.Component {
           <p>Helpfulness: {helpfulness}</p>
           <p>Price: ${price}</p>
         </div>
-        {/* {!isAdmin && userButtons} */}
         {!isAdmin && (
           <AddToCartForm
             handleChange={this.handleChange}

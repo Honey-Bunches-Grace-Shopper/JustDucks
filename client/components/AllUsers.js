@@ -20,7 +20,7 @@ class Users extends React.Component {
         <h1 className="center">All Users</h1>
         <ol>
           {users.map(user => (
-            <SingleUser user={user} key={user.id} isAdmin={isAdmin} />
+            <SingleUser user={user} key={user.email} isAdmin={isAdmin} />
           ))}
         </ol>
       </div>

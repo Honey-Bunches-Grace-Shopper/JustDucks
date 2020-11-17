@@ -31,17 +31,7 @@ class Cart extends React.Component {
   async componentDidMount() {
     await this.props.getUser()
     await this.setState({
-      userId: this.props.user.id,
-      firstName: this.props.user.firstName,
-      lastName: this.props.user.lastName,
-      streetAddress: this.props.user.streetAddress,
-      city: this.props.user.city,
-      zipCode: this.props.user.zipCode,
-      ccNumber: this.props.user.ccNumber,
-      ssid: this.props.user.ssid,
-      cardType: this.props.user.cardType,
-      billingZip: this.props.user.billingZip,
-      experation: this.props.user.experation
+      userId: this.props.user.id || ''
     })
     if (this.state.userId) {
       this.props.getCart(this.state.userId)
@@ -57,14 +47,13 @@ class Cart extends React.Component {
 
   handleSubmit(evt) {
     evt.preventDefault()
-    // this.props.submitCart()
     this.setState(defaultState)
-    //submitting cart must also turn the orders in the cart to "submitted"
   }
 
   render() {
     const userCart = this.props.cart || []
     const guestyCart = this.props.guestCart || []
+    console.log(userCart)
     let loggedInCart = (
       <div>
         <div className="cart-items">
@@ -83,7 +72,7 @@ class Cart extends React.Component {
       <div>
         <div>
           {guestyCart.map(product => (
-            <GuestCartEntry product={product} key={product.id} />
+            <GuestCartEntry product={product} key={product.name} />
           ))}
         </div>
         <div className="cart-total">
@@ -96,7 +85,6 @@ class Cart extends React.Component {
     return (
       <div>
         <h1>Cart:</h1>
-        {console.log(this.props.user)}
         {this.props.user.email && loggedInCart}
         {!this.props.user.email && guestCart}
         <div className="checkout">
@@ -148,14 +136,6 @@ class Cart extends React.Component {
               </div>
               <div>
                 <h4>INPUT CREDIT CARD</h4>
-                {/* <label htmlFor="name">Name:</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  onChange={this.handleChange}
-                  value={this.state.name}
-                /> */}
                 <label htmlFor="ccNumber">Credit Card Number:</label>
                 <input
                   type="password"
@@ -213,7 +193,6 @@ const mapDispatch = dispatch => ({
   removeItem: orderId => dispatch(removeItem(orderId)),
   changeQuantity: (quantity, id) => dispatch(changeQuantity(quantity, id)),
   setGuestCart: () => dispatch(setGuestCart())
-  // submitCart: () => dispatch(submitCart()),
 })
 
 const mapState = state => ({

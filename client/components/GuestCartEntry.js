@@ -45,7 +45,6 @@ class GuestCartEntry extends React.Component {
 
   render() {
     let item = this.props.product
-    console.log(item)
     let itemCount = this.props.product.cartQuantity
     return (
       <div>
@@ -69,7 +68,6 @@ class GuestCartEntry extends React.Component {
             <button>Submit Change</button>
           </form>
         </div>
-        {/* <button onClick={() => this.props.removeItem(id)}>Remove Item</button> */}
         <button onClick={this.handleDelete}>Remove Item</button>
       </div>
     )
