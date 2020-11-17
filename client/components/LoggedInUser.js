@@ -41,7 +41,7 @@ class User extends React.Component {
             </li>
             <li>
               <b>Default Shipping Address:</b> <br />
-              <div id="detailedUserAddress">
+              <div id="detetailedUserAddress">
                 <span>Street: {streetAddress}</span> <br />
                 <span>City: {city}</span> <br />
                 <span>Zip Code: {zipCode}</span>

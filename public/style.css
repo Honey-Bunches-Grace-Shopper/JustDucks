@@ -143,8 +143,8 @@ button:hover {
   font-size: 3rem;
   text-align: center;
   letter-spacing: -1px;
-  background: url(Just_Ducks.jpg) top left / 90% 120% no-repeat;
-  background-position: 50% 28%;
+  background: url(Just_Ducks.jpg) top left / 100% 150% no-repeat;
+  background-position: 40%;
   padding: 100px;
   color: white;
   display: block;
@@ -161,4 +161,12 @@ button:hover {
 #detailedUserAddress {
   position: relative;
   left: 11rem;
+}
+
+#userForm {
+  position: relative;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-startS;
 }
