@@ -5,20 +5,20 @@ module.exports = router
 
 //  GET  /api/products
 router.get('/', async (req, res, next) => {
-  const isAdmin = req.user.admin
+  // const isAdmin = req.user.admin || ''
 
   let config = {}
 
-  if (!isAdmin) {
-    config.attributes = [
-      'id',
-      'name',
-      'price',
-      'description',
-      'imageUrl',
-      'helpfulness'
-    ]
-  }
+  // if (!isAdmin) {
+  config.attributes = [
+    'id',
+    'name',
+    'price',
+    'description',
+    'imageUrl',
+    'helpfulness'
+  ]
+  // }
 
   try {
     const products = await Product.findAll({
@@ -33,20 +33,20 @@ router.get('/', async (req, res, next) => {
 
 //  GET  /api/products/:id
 router.get('/:productId', async (req, res, next) => {
-  const isAdmin = req.user.admin
+  // const isAdmin = req.user.admin
 
   let config = {}
 
-  if (!isAdmin) {
-    config.attributes = [
-      'id',
-      'name',
-      'price',
-      'description',
-      'imageUrl',
-      'helpfulness'
-    ]
-  }
+  // if (!isAdmin) {
+  config.attributes = [
+    'id',
+    'name',
+    'price',
+    'description',
+    'imageUrl',
+    'helpfulness'
+  ]
+  // }
 
   try {
     const {productId} = req.params

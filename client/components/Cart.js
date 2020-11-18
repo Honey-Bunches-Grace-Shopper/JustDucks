@@ -28,7 +28,6 @@ class Cart extends React.Component {
     this.state = defaultState
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.updateUserCartTotal = this.updateUserCartTotal.bind(this)
   }
 
   async componentDidMount() {
@@ -40,7 +39,6 @@ class Cart extends React.Component {
       this.props.getCart(this.state.userId)
     }
     this.props.setGuestCart()
-    console.log('CDM usercart', this.props.userCart)
   }
 
   handleChange(evt) {
@@ -83,7 +81,6 @@ class Cart extends React.Component {
   }
 
   updateUserCartTotal(userCart) {
-    console.log('userCart', userCart)
     let sum = 0
     userCart.map(item => {
       let quant = item.numberOfItems
@@ -96,11 +93,21 @@ class Cart extends React.Component {
     return sum
   }
 
+  updateGuestCartTotal(guestCart) {
+    let sum = 0
+    guestCart.map(item => {
+      let quant = Number(item.cartQuantity || 0)
+      let price = Number(item.price || 0)
+      let total = quant * price
+      sum += total
+    })
+    return sum
+  }
+
   render() {
     const userCart = this.props.cart || []
     const guestyCart = this.props.guestCart || []
-    // console.log('guestyCart', guestyCart)
-    console.log('userCart in render', userCart)
+    let guestCartTotal = this.updateGuestCartTotal(guestyCart) || 0
     let userCartTotal = this.updateUserCartTotal(userCart) || 0
     let loggedInCart = (
       <div>
@@ -123,8 +130,7 @@ class Cart extends React.Component {
           ))}
         </div>
         <div className="cart-total">
-          <h4>Total</h4>
-          <div>Price:</div>
+          <h4>Total Price: ${guestCartTotal} </h4>
         </div>
       </div>
     )
