@@ -18,7 +18,8 @@ const defaultState = {
   ssid: '',
   cardType: '',
   billingZip: '',
-  experation: ''
+  experation: '',
+  userCartTotal: ''
 }
 
 class Cart extends React.Component {
@@ -27,6 +28,7 @@ class Cart extends React.Component {
     this.state = defaultState
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.updateUserCartTotal = this.updateUserCartTotal.bind(this)
   }
 
   async componentDidMount() {
@@ -38,6 +40,7 @@ class Cart extends React.Component {
       this.props.getCart(this.state.userId)
     }
     this.props.setGuestCart()
+    console.log('CDM usercart', this.props.userCart)
   }
 
   handleChange(evt) {
@@ -61,29 +64,44 @@ class Cart extends React.Component {
     stockArr = currentCart.map(cartEntry => {
       return cartEntry.products[0].quantity
     })
-    console.log('new Arrays after submission-->', productArr, stockArr)
+    // console.log('new Arrays after submission-->', productArr, stockArr)
     for (let i = 0; i < productArr.length; i++) {
       const residue = stockArr[i] - productArr[i]
       residueArr.push(residue)
     }
-    console.log('residueArr', residueArr)
+    // console.log('residueArr', residueArr)
     for (let i = 0; i < productArr.length; i++) {
       let productId = productArr[i]
       let quantity = residueArr[i]
       submitInfo[`${productId}`] = quantity
     }
-    console.log('submitInfo', submitInfo)
+    // console.log('submitInfo', submitInfo)
     await this.props.updateStock(submitInfo)
     await this.props.getProducts()
     this.setState(defaultState)
     this.props.history.push('/purchased')
   }
 
+  updateUserCartTotal(userCart) {
+    console.log('userCart', userCart)
+    let sum = 0
+    userCart.map(item => {
+      let quant = item.numberOfItems
+      let productArr = item.products || {}
+      let instance = productArr[0] || 0
+      let price = Number(instance.price || 0)
+      let total = quant * price
+      sum += total
+    })
+    return sum
+  }
+
   render() {
     const userCart = this.props.cart || []
     const guestyCart = this.props.guestCart || []
     // console.log('guestyCart', guestyCart)
-    // console.log('userCart', userCart)
+    console.log('userCart in render', userCart)
+    let userCartTotal = this.updateUserCartTotal(userCart) || 0
     let loggedInCart = (
       <div>
         <div className="cart-items">
@@ -92,8 +110,7 @@ class Cart extends React.Component {
           ))}
         </div>
         <div className="cart-total">
-          <h4>Total</h4>
-          <div>Price:</div>
+          <h4>Total Price: ${userCartTotal}</h4>
         </div>
       </div>
     )
