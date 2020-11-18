@@ -1,5 +1,7 @@
 const router = require('express').Router()
+const Sequelize = require('sequelize')
 const {Order, Product, PastOrder} = require('../db/models')
+const {checkCartOwnership} = require('../gateKeeper')
 module.exports = router
 
 // GET /api/cart/user/userId
@@ -25,8 +27,22 @@ router.post('/', async (req, res, next) => {
   try {
     let quant = Number(req.body.numberOfItems)
     const productId = req.body.selectedProduct.id
+
+    let existingUserOrders = await Order.findAll({
+      attributes: ['id'],
+      where: {
+        userId: req.user.id,
+        submitted: null
+      }
+    })
+
+    existingUserOrders = existingUserOrders.map(o => o.id)
+
     let existing = await PastOrder.findAll({
       where: {
+        orderId: {
+          [Sequelize.Op.in]: existingUserOrders
+        },
         productId: productId
       }
     })
@@ -40,7 +56,7 @@ router.post('/', async (req, res, next) => {
       })
       res.json(updatedOrder)
     } else {
-      const newOrder = await Order.create(req.body)
+      const newOrder = await Order.create({...req.body, userId: req.user.id})
       const product = req.body.selectedProduct
       console.log(newOrder)
       await newOrder.addProduct(product.id)
@@ -52,7 +68,7 @@ router.post('/', async (req, res, next) => {
 })
 
 // GET /api/cart/orderid
-router.get('/:orderId', async (req, res, next) => {
+router.get('/:orderId', checkCartOwnership, async (req, res, next) => {
   try {
     const {orderId} = req.params
     const order = await Order.findByPk(orderId)
@@ -63,7 +79,7 @@ router.get('/:orderId', async (req, res, next) => {
 })
 
 // PATCH /api/cart/orderid
-router.patch('/:orderId', async (req, res, next) => {
+router.patch('/:orderId', checkCartOwnership, async (req, res, next) => {
   try {
     const {orderId} = req.params
     let order = await Order.findByPk(orderId)
@@ -74,7 +90,7 @@ router.patch('/:orderId', async (req, res, next) => {
   }
 })
 
-router.delete('/:orderId', async (req, res, next) => {
+router.delete('/:orderId', checkCartOwnership, async (req, res, next) => {
   try {
     const {orderId} = req.params
     const cart = await Order.findByPk(orderId)

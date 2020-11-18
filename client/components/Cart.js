@@ -1,10 +1,11 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchCart, changeQuantity, removeItem, submitCart} from '../store/cart'
+import {fetchCart, changeQuantity, removeItem} from '../store/cart'
 import OneCartEntry from './OneCartEntry'
 import {me} from '../store/user'
 import {setGuestCart} from '../store/guestCart'
 import GuestCartEntry from './GuestCartEntry'
+import {fetchProducts, updateSubmittedProducts} from '../store/product'
 
 const defaultState = {
   userId: '',
@@ -24,7 +25,7 @@ class Cart extends React.Component {
   constructor(props) {
     super(props)
     this.state = defaultState
-    this.handleChange = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
@@ -45,9 +46,37 @@ class Cart extends React.Component {
     })
   }
 
-  handleSubmit(evt) {
+  async handleSubmit(evt) {
     evt.preventDefault()
+    let productArr = []
+    let stockArr = []
+    let residueArr = []
+    let submitInfo = {}
+    const currentCart = this.props.user.email
+      ? this.props.cart
+      : this.props.guestCart
+    productArr = currentCart.map(cartEntry => {
+      return cartEntry.numberOfItems
+    })
+    stockArr = currentCart.map(cartEntry => {
+      return cartEntry.products[0].quantity
+    })
+    console.log('new Arrays after submission-->', productArr, stockArr)
+    for (let i = 0; i < productArr.length; i++) {
+      const residue = stockArr[i] - productArr[i]
+      residueArr.push(residue)
+    }
+    console.log('residueArr', residueArr)
+    for (let i = 0; i < productArr.length; i++) {
+      let productId = productArr[i]
+      let quantity = residueArr[i]
+      submitInfo[`${productId}`] = quantity
+    }
+    console.log('submitInfo', submitInfo)
+    await this.props.updateStock(submitInfo)
+    await this.props.getProducts()
     this.setState(defaultState)
+    this.props.history.push('/purchased')
   }
 
   render() {
@@ -191,15 +220,18 @@ class Cart extends React.Component {
 const mapDispatch = dispatch => ({
   getUser: () => dispatch(me()),
   getCart: userId => dispatch(fetchCart(userId)),
+  getProducts: () => dispatch(fetchProducts()),
   removeItem: orderId => dispatch(removeItem(orderId)),
   changeQuantity: (quantity, id) => dispatch(changeQuantity(quantity, id)),
-  setGuestCart: () => dispatch(setGuestCart())
+  setGuestCart: () => dispatch(setGuestCart()),
+  updateStock: submitInfo => dispatch(updateSubmittedProducts(submitInfo))
 })
 
 const mapState = state => ({
   cart: state.cart,
   guestCart: state.guestCart,
-  user: state.user
+  user: state.user,
+  products: state.products
 })
 
 export default connect(mapState, mapDispatch)(Cart)

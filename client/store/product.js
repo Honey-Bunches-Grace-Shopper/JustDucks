@@ -1,10 +1,13 @@
 import axios from 'axios'
+import {setCart} from './cart'
 
 /**
  * ACTION TYPES
  */
 
 const SET_PRODUCTS = 'SET_PRODUCTS'
+
+const UPDATE_PRODUCTS = 'UPDATE_PRODUCTS'
 
 /**
  * INITIAL STATE
@@ -19,6 +22,11 @@ export const setProducts = products => ({
   products
 })
 
+export const updateProducts = productInfo => ({
+  type: UPDATE_PRODUCTS,
+  productInfo
+})
+
 /**
  * THUNK CREATORS
  */
@@ -26,8 +34,8 @@ export const fetchProducts = () => async dispatch => {
   try {
     const {data} = await axios.get('/api/products')
     dispatch(setProducts(data))
-  } catch (err) {
-    console.error('Error fetching products: ', err)
+  } catch (error) {
+    console.error('Error fetching products: ', error)
   }
 }
 
@@ -39,11 +47,20 @@ export const updateOneProduct = async (id, productInfo) => {
   }
 }
 
+export const updateSubmittedProducts = submittedInfo => async dispatch => {
+  try {
+    await axios.put('/api/stock', submittedInfo)
+    dispatch(setCart([]))
+  } catch (error) {
+    console.error('Error updating submitted product info', error)
+  }
+}
+
 export const deleteOneProduct = async id => {
   try {
     await axios.delete(`/api/stock/${id}`)
   } catch (error) {
-    console.error('Error updating single product stock', error)
+    console.error('Error deleting single product stock', error)
   }
 }
 
