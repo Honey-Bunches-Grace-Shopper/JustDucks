@@ -35,6 +35,7 @@ const ProductForm = props => {
         <input
           type="number"
           name="helpfulness"
+          min="1"
           value={state.helpfulness}
           onChange={handleChange}
         />

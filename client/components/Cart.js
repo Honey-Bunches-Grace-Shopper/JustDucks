@@ -106,6 +106,7 @@ class Cart extends React.Component {
 
   render() {
     const userCart = this.props.cart || []
+    console.log(userCart)
     const guestyCart = this.props.guestCart || []
     let guestCartTotal = this.updateGuestCartTotal(guestyCart) || 0
     let userCartTotal = this.updateUserCartTotal(userCart) || 0
@@ -113,7 +114,7 @@ class Cart extends React.Component {
       <div>
         <div className="cart-items">
           {userCart.map(cartEntry => (
-            <OneCartEntry cartEntry={cartEntry} key={cartEntry.id} />
+            <OneCartEntry cartEntry={cartEntry} key={cartEntry.id + 1000} />
           ))}
         </div>
         <div className="cart-total">
