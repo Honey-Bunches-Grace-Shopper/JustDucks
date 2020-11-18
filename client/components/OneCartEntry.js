@@ -60,7 +60,7 @@ class OneCartEntry extends React.Component {
             <input
               type="number"
               name="numberOfItems"
-              min="0"
+              min="1"
               max={product.quantity}
               value={this.state.numberOfItems}
               onChange={this.handleChange}

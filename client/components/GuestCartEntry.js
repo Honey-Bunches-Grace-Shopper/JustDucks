@@ -60,7 +60,7 @@ class GuestCartEntry extends React.Component {
             <input
               type="number"
               name="cartQuantity"
-              min="0"
+              min="1"
               max={item.quantity}
               value={this.state.cartQuantity}
               onChange={this.handleChange}
