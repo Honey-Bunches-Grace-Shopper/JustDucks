@@ -9,6 +9,7 @@ import SelectedProduct from './components/SelectedProduct'
 import Cart from './components/Cart'
 import AllUsers from './components/AllUsers'
 import LoggedInUser from './components/LoggedInUser'
+import OrderConform from './components/OrderConfirm'
 
 import {me} from './store'
 /**
@@ -30,6 +31,7 @@ class Routes extends Component {
         <Route path="/cart" component={Cart} />
         <Route exact path="/products" component={AllProducts} />
         <Route path="/products/:productId" component={SelectedProduct} />
+        <Route path="/purchased" component={OrderConform} />
 
         {isLoggedIn && (
           <Switch>
