@@ -21,6 +21,7 @@ class OneCartEntry extends React.Component {
       numberOfItems: this.props.cartEntry.numberOfItems,
       orderId: this.props.cartEntry.id
     })
+    this.props.getCart(this.props.user.id)
   }
 
   handleChange(evt) {
@@ -29,7 +30,7 @@ class OneCartEntry extends React.Component {
 
   handleSubmit(evt) {
     evt.preventDefault()
-    console.log(this.props.user.id)
+    // console.log(this.props.user.id)
     this.props.changeQuantity(this.state.numberOfItems, this.state.orderId)
     this.props.getCart(this.props.user.id)
   }
@@ -41,7 +42,7 @@ class OneCartEntry extends React.Component {
   }
 
   render() {
-    console.log('this.props in onecartentry', this.props)
+    // console.log('this.props in onecartentry', this.props)
     let item = this.props.cartEntry.products || {}
     let product = item[0] || {}
     let itemCount = this.props.cartEntry.numberOfItems
@@ -59,7 +60,7 @@ class OneCartEntry extends React.Component {
             <input
               type="number"
               name="numberOfItems"
-              min="0"
+              min="1"
               max={product.quantity}
               value={this.state.numberOfItems}
               onChange={this.handleChange}

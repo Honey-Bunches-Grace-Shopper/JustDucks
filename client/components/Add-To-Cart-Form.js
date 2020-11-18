@@ -13,7 +13,7 @@ const AddToCartForm = props => {
           type="number"
           id="numberOfItems"
           name="cartQuantity"
-          min="0"
+          min="1"
           max={quantity}
           value={state.cartQuantity}
           onChange={handleChange}
