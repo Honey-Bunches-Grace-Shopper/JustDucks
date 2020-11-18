@@ -151,7 +151,7 @@ class Cart extends React.Component {
                 <input
                   type="text"
                   id="firstName"
-                  name="lastName"
+                  name="firstName"
                   value={this.state.firstName}
                   onChange={this.handleChange}
                 />
