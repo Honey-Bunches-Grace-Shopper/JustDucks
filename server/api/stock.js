@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const {Product} = require('../db/models')
-const adminsOnly = require('../gateKeeper')
+// const adminsOnly = require('../gateKeeper')
 module.exports = router
 
 //PUT     /api/stock/:productId

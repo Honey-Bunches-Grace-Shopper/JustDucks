@@ -41,6 +41,7 @@ class OneCartEntry extends React.Component {
   }
 
   render() {
+    console.log('this.props in onecartentry', this.props)
     let item = this.props.cartEntry.products || {}
     let product = item[0] || {}
     let itemCount = this.props.cartEntry.numberOfItems

@@ -53,7 +53,8 @@ class Cart extends React.Component {
   render() {
     const userCart = this.props.cart || []
     const guestyCart = this.props.guestCart || []
-    console.log(userCart)
+    // console.log('guestyCart', guestyCart)
+    // console.log('userCart', userCart)
     let loggedInCart = (
       <div>
         <div className="cart-items">
