@@ -53,6 +53,7 @@ export class SingleProduct extends React.Component {
   render() {
     let {product} = this.props
     let {id, name, price, helpfulness, description, quantity} = product
+    console.log(product)
 
     //Below buttons should only be visible to admins
     let adminControls = (
