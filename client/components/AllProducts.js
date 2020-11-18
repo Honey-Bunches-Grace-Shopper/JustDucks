@@ -15,7 +15,7 @@ const defaultState = {
   price: '',
   description: '',
   helpfulness: '',
-  quantity: 0,
+  quantity: 1,
   imageUrl: ''
 }
 
@@ -44,7 +44,6 @@ class Products extends React.Component {
   }
 
   render() {
-    console.log('quack')
     const isAdmin = this.props.isAdmin || ''
     const {products} = this.props || {}
     return (

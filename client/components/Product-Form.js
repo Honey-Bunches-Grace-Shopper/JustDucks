@@ -11,13 +11,16 @@ const ProductForm = props => {
         <input
           type="text"
           name="name"
+          min="1"
           value={state.name}
+          required
           onChange={handleChange}
         />
         <label htmlFor="changePrice">Price:</label>
         <input
           type="number"
           name="price"
+          required
           value={state.price}
           onChange={handleChange}
         />
@@ -39,7 +42,8 @@ const ProductForm = props => {
         <input
           type="number"
           name="quantity"
-          min="0"
+          min="1"
+          required
           value={state.quantity}
           onChange={handleChange}
         />
