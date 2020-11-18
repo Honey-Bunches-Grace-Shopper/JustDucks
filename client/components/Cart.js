@@ -117,7 +117,7 @@ class Cart extends React.Component {
           ))}
         </div>
         <div className="cart-total">
-          <h4>Total Price: ${userCartTotal}</h4>
+          <h4>Total Price: ${userCartTotal.toFixed(2)}</h4>
         </div>
       </div>
     )
@@ -130,7 +130,7 @@ class Cart extends React.Component {
           ))}
         </div>
         <div className="cart-total">
-          <h4>Total Price: ${guestCartTotal} </h4>
+          <h4>Total Price: ${guestCartTotal.toFixed(2)} </h4>
         </div>
       </div>
     )
