@@ -56,8 +56,29 @@ export class SingleProduct extends React.Component {
   async addToCartButton(evt) {
     evt.preventDefault()
     let loggedIn = this.props.userId
+    let current = this.props.product
     if (loggedIn) {
       this.props.addCartProduct(this.props.product, 1, this.props.userId)
+    } else if (!localStorage.getItem(`${current.name}`)) {
+      localStorage.setItem(
+        `${current.name}`,
+        JSON.stringify({
+          cartQuantity: 1,
+          name: current.name,
+          price: current.price,
+          description: current.description,
+          helpfulness: current.helpfulness,
+          quantity: current.quantity,
+          imageUrl: current.imageUrl
+        })
+      )
+    } else {
+      let existing = JSON.parse(localStorage.getItem(`${this.state.name}`))
+      let oldQuant = Number(existing.cartQuantity) || 0
+      let newQuant = Number(oldQuant) + 1
+      existing.cartQuantity = newQuant
+      this.setState({cartQuantity: newQuant})
+      localStorage.setItem(`${current.name}`, JSON.stringify(existing))
     }
   }
 
