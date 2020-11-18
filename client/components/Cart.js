@@ -56,28 +56,32 @@ class Cart extends React.Component {
     const currentCart = this.props.user.email
       ? this.props.cart
       : this.props.guestCart
-    productArr = currentCart.map(cartEntry => {
-      return cartEntry.numberOfItems
-    })
-    stockArr = currentCart.map(cartEntry => {
-      return cartEntry.products[0].quantity
-    })
-    // console.log('new Arrays after submission-->', productArr, stockArr)
-    for (let i = 0; i < productArr.length; i++) {
-      const residue = stockArr[i] - productArr[i]
-      residueArr.push(residue)
+    if (this.props.user.email) {
+      productArr = currentCart.map(cartEntry => {
+        return cartEntry.numberOfItems
+      })
+      stockArr = currentCart.map(cartEntry => {
+        return cartEntry.products[0].quantity
+      })
+      // console.log('new Arrays after submission-->', productArr, stockArr)
+      for (let i = 0; i < productArr.length; i++) {
+        const residue = stockArr[i] - productArr[i]
+        residueArr.push(residue)
+      }
+      // console.log('residueArr', residueArr)
+      for (let i = 0; i < productArr.length; i++) {
+        let productId = productArr[i]
+        let quantity = residueArr[i]
+        submitInfo[`${productId}`] = quantity
+      }
+      await this.props.updateStock(submitInfo)
+      await this.props.getProducts()
+      this.setState(defaultState)
+      this.props.history.push('/purchased')
+    } else {
+      localStorage.clear()
+      this.props.history.push('/purchased')
     }
-    // console.log('residueArr', residueArr)
-    for (let i = 0; i < productArr.length; i++) {
-      let productId = productArr[i]
-      let quantity = residueArr[i]
-      submitInfo[`${productId}`] = quantity
-    }
-    // console.log('submitInfo', submitInfo)
-    await this.props.updateStock(submitInfo)
-    await this.props.getProducts()
-    this.setState(defaultState)
-    this.props.history.push('/purchased')
   }
 
   updateUserCartTotal(userCart) {
