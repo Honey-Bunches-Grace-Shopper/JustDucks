@@ -44,6 +44,7 @@ class Products extends React.Component {
   }
 
   render() {
+    const userId = this.props.userId || ''
     const isAdmin = this.props.isAdmin || ''
     const {products} = this.props || {}
     return (
@@ -66,6 +67,7 @@ class Products extends React.Component {
                 product={product}
                 key={product.name}
                 id={product.id}
+                userId={userId}
                 isAdmin={isAdmin}
                 updateProduct={this.props.updateProduct}
                 addCartProduct={this.props.addCartProduct}
@@ -82,7 +84,8 @@ class Products extends React.Component {
 
 const mapState = state => ({
   products: state.products,
-  isAdmin: state.user.admin
+  isAdmin: state.user.admin,
+  userId: state.user.id
 })
 
 const mapDispatch = dispatch => ({

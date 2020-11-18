@@ -1,6 +1,8 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import ProductForm from './Product-Form'
+import {addCartProduct} from '../store/cart'
+import {connect} from 'react-redux'
 
 const defaultState = {
   name: '',
@@ -18,6 +20,7 @@ export class SingleProduct extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
+    this.addToCartButton = this.addToCartButton.bind(this)
   }
 
   componentDidMount() {
@@ -50,6 +53,14 @@ export class SingleProduct extends React.Component {
     await this.props.getProducts()
   }
 
+  async addToCartButton(evt) {
+    evt.preventDefault()
+    let loggedIn = this.props.userId
+    if (loggedIn) {
+      this.props.addCartProduct(this.props.product, 1, this.props.userId)
+    }
+  }
+
   render() {
     let {product} = this.props
     let {id, name, price, helpfulness, description, quantity} = product
@@ -69,7 +80,7 @@ export class SingleProduct extends React.Component {
         </button>
       </div>
     )
-    let userButton = <button>Add To Nest</button>
+    let userButton = <button onClick={this.addToCartButton}>Add To Nest</button>
 
     return (
       <li id="singleProduct">
@@ -81,12 +92,19 @@ export class SingleProduct extends React.Component {
           <h3>${price}</h3>
           <h3>Helpfulness: {helpfulness}</h3>
           <h3>{description}</h3>
-          <h3>{userButton}</h3>
         </div>
         {this.props.isAdmin && adminControls}
+        {!this.props.isAdmin && userButton}
       </li>
     )
   }
 }
 
-export default SingleProduct
+const mapDispatch = dispatch => ({
+  addCartProduct: (product, numberOfItems, userId) =>
+    dispatch(addCartProduct(product, numberOfItems, userId))
+})
+
+const connectedSingleProduct = connect(null, mapDispatch)(SingleProduct)
+
+export default connectedSingleProduct
