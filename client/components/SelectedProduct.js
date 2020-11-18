@@ -48,15 +48,15 @@ class Product extends React.Component {
         this.props.userId
       )
     } else if (!localStorage.getItem(`${this.state.name}`)) {
-        localStorage.setItem(`${this.state.name}`, JSON.stringify(this.state))
-      } else {
-        let existing = JSON.parse(localStorage.getItem(`${this.state.name}`))
-        let oldQuant = Number(existing.cartQuantity) || 0
-        let newQuant = Number(oldQuant) + Number(this.state.cartQuantity)
-        existing.cartQuantity = newQuant
-        this.setState({cartQuantity: newQuant})
-        localStorage.setItem(`${this.state.name}`, JSON.stringify(existing))
-      }
+      localStorage.setItem(`${this.state.name}`, JSON.stringify(this.state))
+    } else {
+      let existing = JSON.parse(localStorage.getItem(`${this.state.name}`))
+      let oldQuant = Number(existing.cartQuantity) || 0
+      let newQuant = Number(oldQuant) + Number(this.state.cartQuantity)
+      existing.cartQuantity = newQuant
+      this.setState({cartQuantity: newQuant})
+      localStorage.setItem(`${this.state.name}`, JSON.stringify(existing))
+    }
   }
   //handleChange handles cart submissions && product updates through state (User && Admin)
   handleChange(evt) {

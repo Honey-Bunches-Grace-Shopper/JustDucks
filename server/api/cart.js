@@ -20,6 +20,7 @@ router.get('/user/:userId', async (req, res, next) => {
 })
 
 // POST /api/cart
+//For adding to the cart
 router.post('/', async (req, res, next) => {
   try {
     let quant = Number(req.body.numberOfItems)
@@ -41,6 +42,8 @@ router.post('/', async (req, res, next) => {
     } else {
       const newOrder = await Order.create(req.body)
       const product = req.body.selectedProduct
+      console.log(newOrder)
+      await newOrder.addProduct(product.id)
       res.json(newOrder)
     }
   } catch (err) {

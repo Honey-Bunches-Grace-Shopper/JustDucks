@@ -44,6 +44,7 @@ class Products extends React.Component {
   }
 
   render() {
+    console.log('quack')
     const isAdmin = this.props.isAdmin || ''
     const {products} = this.props || {}
     return (
