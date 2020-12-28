@@ -8,6 +8,11 @@ module.exports = router
 router.get('/user/:userId', async (req, res, next) => {
   try {
     let userId = req.params.userId
+    console.log('userId', userId)
+    if (!userId) {
+      console.log('no userid')
+      throw new Error()
+    }
     const orders = await Order.findAll({
       where: {
         submitted: null,
@@ -17,8 +22,14 @@ router.get('/user/:userId', async (req, res, next) => {
     })
     res.json(orders)
   } catch (err) {
+    console.error(error)
     next(err)
   }
+})
+
+// GET /api/cart/user
+router.get('/user', async (req, res, next) => {
+  res.sendStatus(404)
 })
 
 // POST /api/cart
@@ -67,7 +78,7 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-// GET /api/cart/orderid
+// GET /api/cart/:orderid
 router.get('/:orderId', checkCartOwnership, async (req, res, next) => {
   try {
     const {orderId} = req.params
@@ -78,7 +89,7 @@ router.get('/:orderId', checkCartOwnership, async (req, res, next) => {
   }
 })
 
-// PATCH /api/cart/orderid
+// PATCH /api/cart/:orderid
 router.patch('/:orderId', checkCartOwnership, async (req, res, next) => {
   try {
     const {orderId} = req.params
