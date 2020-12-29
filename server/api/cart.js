@@ -1,18 +1,17 @@
 const router = require('express').Router()
 const Sequelize = require('sequelize')
 const {Order, Product, PastOrder} = require('../db/models')
-const {checkCartOwnership} = require('../gateKeeper')
+const {
+  checkCartOwnership,
+  checkUserIdentity,
+  checkCartAccess
+} = require('../gateKeeper')
 module.exports = router
 
 // GET /api/cart/user/userId
-router.get('/user/:userId', async (req, res, next) => {
+router.get('/user/:userId', checkUserIdentity, async (req, res, next) => {
   try {
     let userId = req.params.userId
-    console.log('userId', userId)
-    if (!userId) {
-      console.log('no userid')
-      throw new Error()
-    }
     const orders = await Order.findAll({
       where: {
         submitted: null,
@@ -34,8 +33,9 @@ router.get('/user', async (req, res, next) => {
 
 // POST /api/cart
 //For adding to the cart
-router.post('/', async (req, res, next) => {
+router.post('/', checkCartAccess, async (req, res, next) => {
   try {
+    console.log(req.body)
     let quant = Number(req.body.numberOfItems)
     const productId = req.body.selectedProduct.id
 
@@ -78,7 +78,7 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-// GET /api/cart/:orderid
+// GET /api/cart/:orderId
 router.get('/:orderId', checkCartOwnership, async (req, res, next) => {
   try {
     const {orderId} = req.params
@@ -89,7 +89,7 @@ router.get('/:orderId', checkCartOwnership, async (req, res, next) => {
   }
 })
 
-// PATCH /api/cart/:orderid
+// PATCH /api/cart/:orderId
 router.patch('/:orderId', checkCartOwnership, async (req, res, next) => {
   try {
     const {orderId} = req.params
@@ -101,6 +101,7 @@ router.patch('/:orderId', checkCartOwnership, async (req, res, next) => {
   }
 })
 
+// DELETE /api/cart/:orderId
 router.delete('/:orderId', checkCartOwnership, async (req, res, next) => {
   try {
     const {orderId} = req.params

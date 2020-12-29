@@ -1,6 +1,5 @@
 const router = require('express').Router()
 const {Product} = require('../db/models')
-// const adminOnly = require('../gateKeeper')
 module.exports = router
 
 //  GET  /api/products

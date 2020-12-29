@@ -4,7 +4,7 @@ const {adminsOnly} = require('../gateKeeper')
 module.exports = router
 
 // PUT /api/stock
-router.put('/', async (req, res, next) => {
+router.put('/', adminsOnly, async (req, res, next) => {
   try {
     const productArr = Object.keys(req.body)
     const indexIDArr = productArr.map(key => Number(key))
@@ -33,7 +33,7 @@ router.put('/', async (req, res, next) => {
 })
 
 //PUT     /api/stock/:productId
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', adminsOnly, async (req, res, next) => {
   try {
     const {id} = req.params
     const productInstance = await Product.findByPk(id)
