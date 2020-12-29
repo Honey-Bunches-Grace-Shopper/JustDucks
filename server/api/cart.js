@@ -35,7 +35,6 @@ router.get('/user', async (req, res, next) => {
 //For adding to the cart
 router.post('/', checkCartAccess, async (req, res, next) => {
   try {
-    console.log(req.body)
     let quant = Number(req.body.numberOfItems)
     const productId = req.body.selectedProduct.id
 
@@ -69,7 +68,6 @@ router.post('/', checkCartAccess, async (req, res, next) => {
     } else {
       const newOrder = await Order.create({...req.body, userId: req.user.id})
       const product = req.body.selectedProduct
-      console.log(newOrder)
       await newOrder.addProduct(product.id)
       res.json(newOrder)
     }

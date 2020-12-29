@@ -31,7 +31,6 @@ const checkCartAccess = async (req, res, next) => {
 const checkCartOwnership = async (req, res, next) => {
   let order = await Order.findByPk(req.params.orderId)
   if (!req.user || !order || req.user.id !== order.userId) {
-    console.log(req.user.id !== order.userId)
     const err = new Error(
       `Sorry! Accessing / Editing Other Shopper's Carts Is Not Allowed`
     )

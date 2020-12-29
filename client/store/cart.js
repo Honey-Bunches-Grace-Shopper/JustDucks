@@ -59,7 +59,6 @@ export const addCartProduct = (
       numberOfItems,
       userId
     })
-    console.log(data)
     dispatch(addProduct(data))
   } catch (err) {
     console.error('Error adding item to cart', err)
