@@ -18,7 +18,7 @@ const defaultState = {
   ssid: '',
   cardType: '',
   billingZip: '',
-  experation: '',
+  expiration: '',
   userCartTotal: ''
 }
 
@@ -150,10 +150,10 @@ class Cart extends React.Component {
         {!this.props.user.email && guestCart}
         <div className="checkout">
           <div className="shipping">
-            <h3>Log In Above or Checkout as Guest:</h3>
-            <h4>SHIPPING INFORMATION</h4>
             <form onSubmit={this.handleSubmit}>
+              <h3>Log In Above or Checkout as Guest:</h3>
               <div>
+                <h4>SHIPPING INFORMATION</h4>
                 <label htmlFor="firstName">First Name:</label>
                 <input
                   type="text"
@@ -230,12 +230,12 @@ class Cart extends React.Component {
                   onChange={this.handleChange}
                   value={this.state.billingZip}
                 />
-                <label htmlFor="experation">Experation Date:</label>
+                <label htmlFor="expiration">Expiration Date:</label>
                 <input
                   type="month"
-                  id="experation"
-                  name="experation"
-                  value={this.state.experation}
+                  id="expiration"
+                  name="expiration"
+                  value={this.state.expiration}
                   onChange={this.handleChange}
                 />
                 <button type="submit">Submit Order</button>

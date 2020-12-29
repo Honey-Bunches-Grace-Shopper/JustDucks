@@ -291,3 +291,10 @@ button:hover {
   justify-content: space-between;
   border-style: solid;
 }
+
+.checkout .shipping form {
+  justify-content: space-around;
+  display: flex;
+  margin: 1rem;
+  border-block-style: solid;
+}

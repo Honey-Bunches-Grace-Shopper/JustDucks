@@ -55,7 +55,7 @@ const User = db.define('user', {
   billingZip: {
     type: Sequelize.INTEGER
   },
-  experation: {
+  expiration: {
     type: Sequelize.STRING
   },
   googleId: {
