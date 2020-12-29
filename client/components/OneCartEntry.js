@@ -47,14 +47,14 @@ class OneCartEntry extends React.Component {
     let product = item[0] || {}
     let itemCount = this.props.cartEntry.numberOfItems
     return (
-      <div>
-        <img width="100px" src={product.imageUrl || ''} />
-        <div>
-          <div>{product.name}</div>
+      <div className="cart-item">
+        <div className="cart-item-info">
+          <img width="100px" src={product.imageUrl || ''} />
+          <div className="productName">{product.name}</div>
           <div>Price per Item: ${product.price}</div>
           <div>Current Quantity: {itemCount}</div>
         </div>
-        <div>
+        <div className="cart-item-edit">
           <form onSubmit={this.handleSubmit}>
             <label htmlFor="quantity">Change Quantity:</label>
             <input
@@ -67,8 +67,10 @@ class OneCartEntry extends React.Component {
             />
             <button>Submit Change</button>
           </form>
+          <button className="remove-item" onClick={this.handleDelete}>
+            Remove Item
+          </button>
         </div>
-        <button onClick={this.handleDelete}>Remove Item</button>
       </div>
     )
   }

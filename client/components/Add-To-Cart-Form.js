@@ -18,7 +18,7 @@ const AddToCartForm = props => {
           value={state.cartQuantity}
           onChange={handleChange}
         />
-        <button className="addToCartButton">Add to Nest</button>
+        <button className="addToCartButton">Add to Cart</button>
       </form>
     </div>
   )

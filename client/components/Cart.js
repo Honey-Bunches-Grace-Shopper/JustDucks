@@ -129,20 +129,21 @@ class Cart extends React.Component {
 
     let guestCart = (
       <div>
-        <div>
+        <div className="cart-items">
           {guestyCart.map(product => (
             <GuestCartEntry product={product} key={product.name} />
           ))}
-        </div>
-        <div className="cart-total">
-          <h4>Total Price: ${guestCartTotal.toFixed(2)} </h4>
+
+          <div className="cart-total">
+            <h4>Total Price: ${guestCartTotal.toFixed(2)} </h4>
+          </div>
         </div>
       </div>
     )
 
     return (
-      <div>
-        <h1>Cart:</h1>
+      <div className="cart-body">
+        <h1>CART:</h1>
         {this.props.user.email && loggedInCart}
         {!this.props.user.email && guestCart}
         <div className="checkout">
