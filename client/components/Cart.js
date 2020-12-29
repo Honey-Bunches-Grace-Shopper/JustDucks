@@ -121,7 +121,7 @@ class Cart extends React.Component {
             <OneCartEntry cartEntry={cartEntry} key={cartEntry.id + 1000} />
           ))}
         </div>
-        <div className="cart-total">
+        <div className="cart-items">
           <h4>Total Price: ${userCartTotal.toFixed(2)}</h4>
         </div>
       </div>
@@ -134,8 +134,10 @@ class Cart extends React.Component {
             <GuestCartEntry product={product} key={product.name} />
           ))}
 
-          <div className="cart-total">
-            <h4>Total Price: ${guestCartTotal.toFixed(2)} </h4>
+          <div className="cart-item" id="cartTotal">
+            <div className="cartTotal">
+              <h4>Total Price: ${guestCartTotal.toFixed(2)} </h4>
+            </div>
           </div>
         </div>
       </div>
@@ -147,8 +149,8 @@ class Cart extends React.Component {
         {this.props.user.email && loggedInCart}
         {!this.props.user.email && guestCart}
         <div className="checkout">
-          <div>Log In Above or Checkout as Guest:</div>
           <div className="shipping">
+            <h3>Log In Above or Checkout as Guest:</h3>
             <h4>SHIPPING INFORMATION</h4>
             <form onSubmit={this.handleSubmit}>
               <div>
