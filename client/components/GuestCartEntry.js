@@ -47,14 +47,14 @@ class GuestCartEntry extends React.Component {
     let item = this.props.product
     let itemCount = this.props.product.cartQuantity
     return (
-      <div>
+      <div className="cart-item">
         <img width="100px" src={item.imageUrl || ''} />
-        <div>
-          <div>{item.name}</div>
+        <div className="cart-item-info">
+          <div className="productName">{item.name}</div>
           <div>Price per Item: ${item.price}</div>
           <div>Current Quantity: {itemCount}</div>
         </div>
-        <div>
+        <div className="cart-item-edit">
           <form onSubmit={this.handleSubmit}>
             <label htmlFor="cartQuantity">Change Quantity:</label>
             <input
@@ -67,8 +67,11 @@ class GuestCartEntry extends React.Component {
             />
             <button>Submit Change</button>
           </form>
+
+          <button className="remove-item" onClick={this.handleDelete}>
+            Remove Item
+          </button>
         </div>
-        <button onClick={this.handleDelete}>Remove Item</button>
       </div>
     )
   }

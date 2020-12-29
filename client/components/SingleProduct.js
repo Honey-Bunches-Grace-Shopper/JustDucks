@@ -101,7 +101,7 @@ export class SingleProduct extends React.Component {
         </button>
       </div>
     )
-    let userButton = <button onClick={this.addToCartButton}>Add To Nest</button>
+    let userButton = <button onClick={this.addToCartButton}>Add To Cart</button>
 
     return (
       <li id="singleProduct">

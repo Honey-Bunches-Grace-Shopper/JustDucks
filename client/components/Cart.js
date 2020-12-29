@@ -18,7 +18,7 @@ const defaultState = {
   ssid: '',
   cardType: '',
   billingZip: '',
-  experation: '',
+  expiration: '',
   userCartTotal: ''
 }
 
@@ -121,7 +121,7 @@ class Cart extends React.Component {
             <OneCartEntry cartEntry={cartEntry} key={cartEntry.id + 1000} />
           ))}
         </div>
-        <div className="cart-total">
+        <div className="cart-items">
           <h4>Total Price: ${userCartTotal.toFixed(2)}</h4>
         </div>
       </div>
@@ -129,28 +129,31 @@ class Cart extends React.Component {
 
     let guestCart = (
       <div>
-        <div>
+        <div className="cart-items">
           {guestyCart.map(product => (
             <GuestCartEntry product={product} key={product.name} />
           ))}
-        </div>
-        <div className="cart-total">
-          <h4>Total Price: ${guestCartTotal.toFixed(2)} </h4>
+
+          <div className="cart-item" id="cartTotal">
+            <div className="cartTotal">
+              <h4>Total Price: ${guestCartTotal.toFixed(2)} </h4>
+            </div>
+          </div>
         </div>
       </div>
     )
 
     return (
-      <div>
-        <h1>Cart:</h1>
+      <div className="cart-body">
+        <h1>CART:</h1>
         {this.props.user.email && loggedInCart}
         {!this.props.user.email && guestCart}
         <div className="checkout">
-          <div>Log In Above or Checkout as Guest:</div>
           <div className="shipping">
-            <h4>SHIPPING INFORMATION</h4>
             <form onSubmit={this.handleSubmit}>
+              <h3>Log In Above or Checkout as Guest:</h3>
               <div>
+                <h4>SHIPPING INFORMATION</h4>
                 <label htmlFor="firstName">First Name:</label>
                 <input
                   type="text"
@@ -227,12 +230,12 @@ class Cart extends React.Component {
                   onChange={this.handleChange}
                   value={this.state.billingZip}
                 />
-                <label htmlFor="experation">Experation Date:</label>
+                <label htmlFor="expiration">Expiration Date:</label>
                 <input
                   type="month"
-                  id="experation"
-                  name="experation"
-                  value={this.state.experation}
+                  id="expiration"
+                  name="expiration"
+                  value={this.state.expiration}
                   onChange={this.handleChange}
                 />
                 <button type="submit">Submit Order</button>

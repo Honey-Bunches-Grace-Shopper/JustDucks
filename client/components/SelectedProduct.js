@@ -95,28 +95,37 @@ class Product extends React.Component {
 
     return (
       <div id="singleProduct">
-        <img width="300px" src={imageUrl} />
+        <div className="singleProductInfo">
+          <div>
+            <img width="300px" src={imageUrl} />
+          </div>
+          <div className="singleProductTools">
+            {!isAdmin && (
+              <AddToCartForm
+                handleChange={this.handleChange}
+                handleSubmit={this.handleSubmit}
+                state={this.state}
+                quantity={quantity}
+              />
+            )}
+          </div>
+          <div className="singleProductTools">
+            {isAdmin && (
+              <ProductForm
+                handleChange={this.handleChange}
+                handleSubmit={this.handleProductUpdate}
+                state={this.state}
+              />
+            )}
+          </div>
+        </div>
         <div>
-          <h3>{name}</h3>
+          <h4>Product Details:</h4>
+          <h1>{name}</h1>
           <p>{description}</p>
           <p>Helpfulness: {helpfulness}</p>
           <p>Price: ${price}</p>
         </div>
-        {!isAdmin && (
-          <AddToCartForm
-            handleChange={this.handleChange}
-            handleSubmit={this.handleSubmit}
-            state={this.state}
-            quantity={quantity}
-          />
-        )}
-        {isAdmin && (
-          <ProductForm
-            handleChange={this.handleChange}
-            handleSubmit={this.handleProductUpdate}
-            state={this.state}
-          />
-        )}
       </div>
     )
   }
